@@ -9,7 +9,129 @@
 
 <h1><a href="../index.html">Home</a></h1>
 
+<a name="top"></a>
+
 <h2>2014</h2>
+
+<ul>
+    <li><a href="#2014-02-17">Feb 17: How I back up my data</a></li>
+</ul>
+
+<hr>
+
+<a name="2014-02-17"></a>
+
+<h3>How I back up my data</h3>
+
+<p>
+I suppose if I could put a number on it, it would be three.
+3 TB, that's how much data I have.
+It is a modest number, but it's vitally important to me that I don't lose any of it.
+The two primary dangers to this volume of data are bit-rot and drive failure.
+I am ashamed to admit that I don't really have a strategy for preventing bit-rot yet.
+Even as you read this, a random bit might be flipping in one of the FLAC files, forever corrupting it.
+<a href=http://arstechnica.com/information-technology/2014/01/bitrot-and-atomic-cows-inside-next-gen-filesystems/>btrfs couldn't get here sooner.</a>
+But I do have a defense against drive failure.
+I've never lost data to drive failure so far and I'm doing my damned best to make sure I don't start now.
+This post documents how I backup my data.
+If you don't have a backup strategy in place, hopefully, this will get you started.
+</p>
+
+<p>
+I have data spread over three devices.
+<ul>
+    <li>$HOME</li>
+    My home directory contains active projects I'm working on, application settings, crypto keys, important documents, etc.
+    This is a 180 GB SSD.
+    <li>archive</li>
+    Cold storage for files that I don't think I'll access anytime soon, but would rather not throw away.
+    This is a sparsely utilized 1 TB HDD.
+    <li>media</li>
+    Entertainment files (movies, music, tv, etc.) on a 3 TB HDD.
+</ul>
+My backup strategy is to make a copy of my home and archive to one hard disk and backup media to another.
+This way, if any of the devices croak, I should be able to get a new device and simply copy over from the most recent backup.
+The hope is that the backup is recent enough that not too much progress is lost.
+</p>
+
+<p>
+For the longest time, I only created snapshot style backups with my data exactly mirrored on the backup device.
+The advantage of this is that the backup device becomes a clean drop-in replacement.
+Also, it's space-efficient and uses no more space than the amount of data you have.
+The downside is that all time information is lost.
+You may keep several snapshots of your data, if you have storage space enough.
+</p>
+
+<pre>
+$ rsync --archive /path/to/source /path/to/destination
+</pre>
+
+<p>
+The far superior method, in my opinion is to make incremental backups and preserve that history information.
+The simplest implementation of this would be simply storing multiple snapshots of your data in separate directories.
+This is however very inefficient.
+Not only does it waste a lot of space duplicating your data, it also takes a lot of time to create new snapshots.
+To get around this, we need to use hard links.
+</p>
+
+<p>
+A hard link is one more alias to refer to the data on the disk.
+While soft links could be imagined as pointing at the file name, a hard link points at the file itself.
+You can have multiple hard links pointing to the same file and modifying any of them modifies the actual file on the disk.
+You can delete one hard link and still reach the file from another hard link.
+Only when the last hard link is lost, the file is lost.
+</p>
+
+<p>
+<a href="http://www.mikerubel.org/computers/rsync_snapshots/">This page</a> has a great summary that goes over several considerations when setting up incremental backups.
+The gist is that you can use rsync to check against the latest backup you made and either create a hard link if the file already exists, or copy the file over if it's new.
+This will only copy over a file once and just use hard links on subsequent backups.
+In rsync, this is done using the <code>--link-dest</code> option.
+</p>
+
+<pre>
+$ rsync --archive --link-dest=/path/to/latest /path/to/source /path/to/new
+</pre>
+
+<p>
+I created a snapshot-style backup first and created a (soft) link to the folder called "latest".
+Next, whenever I need to create a backup, I'd use a command like the one above and create a new backup version.
+Finally, I delete the "latest" link and create a new one pointing at the new backup version.
+This produces a file structure like this,
+</p>
+
+<pre>
+archive/
+├── 2014-01-11/
+├── 2014-01-19/
+├── 2014-01-22/
+├── 2014-01-25/
+├── 2014-01-26/
+├── 2014-02-01/
+├── 2014-02-06/
+├── 2014-02-08/
+├── 2014-02-13/
+└── latest -> 2014-02-13/
+</pre>
+
+<p>
+This makes it very intuitive to navigate previous backups by date.
+One could always include the time to provide greater granularity.
+It also makes cleanups easy. Simply delete the oldest few backup directories and old files will disappear and new files will stay unaffected.
+</p>
+
+<p>
+Here's the shell script I use to make these backups.
+I hard-coded the destination, but you can just as easily make the destination the second argument.
+The first run of this script will probably generate a warning/error message because the "latest" link will not exist yet.
+But all subsequent runs will run quietly and without generating any errors or warnings.
+</p>
+
+<script src="https://gist.github.com/dekonvoluted/9061431.js"></script>
+
+<hr>
+
+<a href="#top">Back to top</a>
 
 <hr>
 
