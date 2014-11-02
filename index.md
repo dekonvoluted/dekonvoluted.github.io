@@ -10,8 +10,16 @@ The entries are sorted by the date originally published.
 The site looks very bare now because my current know-how only extends to basic html and some css.
 As I learn more things, I imagine the site would start looking spiffier.
 
-## 2014
-* [How I back up my data]({% post_url 2014-02-17-how-i-back-up-my-data %})
+## Blog posts
+
+<ul>
+    {% for post in site.posts %}
+        <li>
+            {{ post.date | date_to_string }}: <a href="{{ post.url }}">{{ post.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
 
 © Karthik Periagaram
 
