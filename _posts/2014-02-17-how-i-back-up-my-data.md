@@ -18,15 +18,15 @@ If you don't have a backup strategy in place, hopefully, this will get you start
 
 I have data spread over three volumes.
 
-* ### Home
+* #### Home
 My home directory contains active projects I'm working on, application settings, crypto keys, important documents, etc.
 This is currently on a 180 GB SSD.
 
-* ### Archive
+* #### Archive
 Cold storage for files that I don't think I'll need access any time soon.
 This is a sparsely utilized 1 TB HDD.
 
-* ### Media
+* #### Media
 Entertainment files---movies, music, etc. on a 3 TB HDD.
 
 My backup strategy is to make periodic, incremental copies of my three volumes.
@@ -70,7 +70,7 @@ And the corresponding destination could look something like this,
     ├── 2014-02-13/
     └── latest -> 2014-02-13/`
 
-## Implementation
+### Implementation
 
 At its core, the python script needs to execute an `rsync` call like this,
 
@@ -146,7 +146,7 @@ if __name__ == '__main__':
 
     A single preset file can contain many such presets.
     Multiple preset files can be supplied as arguments.''' )
-    parser.add_argument( 'PRESETS', nargs='+', help='One ore more INI files containing presets.' )
+    parser.add_argument( 'PRESETS', nargs='+', help='One or more INI files containing presets.' )
     args = parser.parse_args()
 
     process_preset_files( args.PRESETS )
