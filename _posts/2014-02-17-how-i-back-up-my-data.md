@@ -1,7 +1,7 @@
 ---
 title: How I back up my data
 categories: [user guides]
-tags: rsync ext4 btrfs backup
+tags: [rsync, ext4, btrfs, backup]
 ---
 
 # How I back up my data
