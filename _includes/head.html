@@ -1,0 +1,11 @@
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% if page.title == "Home" %}
+            {{ site.title }}
+        {% else %}
+            {{ page.title }}
+        {% endif %}
+    </title>
+</head>
+
