@@ -1,10 +1,9 @@
 ---
 title: How I back up my data
+layout: post
 categories: [user guides]
 tags: [rsync, ext4, btrfs, backup]
 ---
-
-# How I back up my data
 
 I suppose, if I had to put a number on it, it would be... three.
 Three TB, that\'s how much of my data is at stake.
