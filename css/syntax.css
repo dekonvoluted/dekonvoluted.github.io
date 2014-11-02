@@ -1,4 +1,5 @@
-.hll { background-color: #ffffcc }
+.highlight { background-color: #ffffcc }
+.lineno { color: #ddddaa; font-style: italic } /* Line number */
 .c { color: #408080; font-style: italic } /* Comment */
 .err { border: 1px solid #FF0000 } /* Error */
 .k { color: #008000; font-weight: bold } /* Keyword */
