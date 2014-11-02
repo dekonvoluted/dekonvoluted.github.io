@@ -6,21 +6,13 @@
 
     <body>
 
-        {% if page.previous %}
-            <a href="{{ page.previous.url }}">Previous</a>
-        {% endif %}
-
-        <a href="/">Home</a>
-
-        {% if page.next %}
-            <a href="{{ page.next.url }}">Next</a>
-        {% endif %}
+        <h1>{{ site.title }}</h1>
 
         {{ content }}
 
         <hr>
 
-        &copy; {{ site.time | date: "%Y" }}. {{ site.author }}
+        &copy; {{ site.time | date: "%Y" }} {{ site.author }}.
 
     </body>
 
