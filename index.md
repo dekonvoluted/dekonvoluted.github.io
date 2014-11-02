@@ -15,7 +15,7 @@ As I learn more things, I imagine the site would start looking spiffier.
 <ul>
     {% for post in site.posts %}
         <li>
-            {{ post.date | date_to_string }}: <a href="{{ post.url }}">{{ post.title }}</a>
+            {{ post.date | date: "%Y-%m-%d" }}: <a href="{{ post.url }}">{{ post.title }}</a>
         </li>
     {% endfor %}
 </ul>
