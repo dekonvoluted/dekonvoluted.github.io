@@ -85,7 +85,7 @@ This forms the inner-most function of our script and is called only when absolut
 {% highlight bash linenos %}
 reencode()
 {
-    echo "${PROGNAME}: Removing ID3 tags."
+    echo "Removing ID3 tags."
 
     # Decode and extract metadata to temporary location
     TMP=$(mktemp --directory)
@@ -129,7 +129,7 @@ normalize()
     # Avoid following links
     if [ -h "${1}" ]
     then
-        echo ${PROGNAME}: Avoiding link "${1}"
+        echo Avoiding link "${1}"
     fi
 
     # Reencode and normalize
@@ -138,7 +138,7 @@ normalize()
     then
         reencode "${1}"
     else
-        metaflac --preserve-mod-time --add-replay-gain "{1}" || echo -n ${PROGNAME}: "Replay gain error: "
+        metaflac --preserve-mod-time --add-replay-gain "{1}" || echo -n "Replay gain error: "
     fi
 
     echo $(basename "${1}")
@@ -164,7 +164,7 @@ processDir()
             # Act only on regular directories
             if [ -h "${content}" ]
             then
-                echo "${PROGNAME}: Avoiding link "${content}"
+                echo "Avoiding link "${content}"
             else
                 processDir "${content}"
             fi
