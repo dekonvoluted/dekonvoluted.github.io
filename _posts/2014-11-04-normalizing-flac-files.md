@@ -2,7 +2,7 @@
 title: Normalizing FLAC files
 layout: post
 categories: [user guides]
-tags: [flac, replay gain, bash]
+tags: [bash, flac, metaflac, replay gain]
 ---
 
 I converted my music collection to FLAC sometime in 2011.

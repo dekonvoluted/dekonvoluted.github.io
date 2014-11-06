@@ -2,7 +2,7 @@
 title: How I back up my data
 layout: post
 categories: [user guides]
-tags: [rsync, ext4, btrfs, backup]
+tags: [python, rsync, ext4, backup]
 ---
 
 I suppose, if I had to put a number on it, it would be... three.
