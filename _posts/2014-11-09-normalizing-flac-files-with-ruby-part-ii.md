@@ -47,16 +47,16 @@ And if the content is a file, we'll try to normalize it.
 First, we need to close the logic gap of potentially following unsafe symlinks.
 
 {% highlight ruby linenos %}
-        contentPath = dirPath + "/" + content
-        next if File.symlink?( contentPath )
+contentPath = dirPath + "/" + content
+next if File.symlink?( contentPath )
 {% endhighlight %}
 
 Next, the `foreach` block ends up following the `.` and `..` directories as well, causing trouble.
 To fix that, we'll skip those.
 
 {% highlight ruby linenos %}
-    Dir.foreach( dirPath ) { |content|
-        next if content == "." or content == ".."
+Dir.foreach( dirPath ) { |content|
+    next if content == "." or content == ".."
 {% endhighlight %}
 
 Awesome.
@@ -67,42 +67,42 @@ If this assumption is not true and you have a folder with dozens (or worse, hund
 Here's the original block:
 
 {% highlight ruby linenos %}
-    Dir.foreach( dirPath ) { |content|
-        next if content == "." or content == ".."
+Dir.foreach( dirPath ) { |content|
+    next if content == "." or content == ".."
 
-        contentPath = dirPath + "/" + content
-        next if File.symlink?( contentPath )
+    contentPath = dirPath + "/" + content
+    next if File.symlink?( contentPath )
 
-        if File.directory?( contentPath )
-            processDir( contentPath )
-        elsif
-            flacFile = FlacFile.new contentPath
-            flacFile.normalize
-        end
-    }
+    if File.directory?( contentPath )
+        processDir( contentPath )
+    elsif
+        flacFile = FlacFile.new contentPath
+        flacFile.normalize
+    end
+}
 {% endhighlight %}
 
 And here's how the forked version looks.
 Notice that we wait for all the forked processes to finish at each level before moving on.
 
 {% highlight ruby linenos %}
-    Dir.foreach( dirPath ) { |content|
-        next if content == "." or content == ".."
+Dir.foreach( dirPath ) { |content|
+    next if content == "." or content == ".."
 
-        contentPath = dirPath + "/" + content
-        next if File.symlink?( contentPath )
+    contentPath = dirPath + "/" + content
+    next if File.symlink?( contentPath )
 
-        if File.directory?( contentPath )
-            processDir( contentPath )
-        elsif
-            fork do
-                flacFile = FlacFile.new contentPath
-                flacFile.normalize
-            end
+    if File.directory?( contentPath )
+        processDir( contentPath )
+    elsif
+        fork do
+            flacFile = FlacFile.new contentPath
+            flacFile.normalize
         end
-    }
+    end
+}
 
-    Process.wait
+Process.wait
 {% endhighlight %}
 
 This function is done good to go.
