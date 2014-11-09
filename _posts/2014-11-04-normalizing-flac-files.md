@@ -5,6 +5,8 @@ categories: [user guides]
 tags: [bash, flac, metaflac, replay gain]
 ---
 
+> An update to this post is [here]( {% post_url 2014-11-08-normalizing-flac-files-with-ruby-part-i %} ).
+
 I converted my music collection to FLAC sometime in 2011.
 Prior to that, my collection was encoded in the MP3 format.
 However, upon realizing that lossless audio is obviously the best way to store music, I rebuilt my music collection from source (audio CDs).
