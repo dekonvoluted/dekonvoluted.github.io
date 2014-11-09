@@ -6,6 +6,15 @@ categories: [user guides]
 tags: [ruby, flac, metaflac, id3tag, replay gain]
 ---
 
+> This is part of a series of posts dealing with a script to normalize FLAC files.
+> The previous entries are as follows:
+
+> [Normalizing FLAC files]( {% post_url 2014-11-04-normalizing-flac-files %} )
+
+> The updates following this post are as follows:
+
+> [Normalizing FLAC files - With Ruby - Part II]( {% post_url 2014-11-09-normalizing-flac-files-with-ruby-part-ii %} )
+
 I wrote about the script I use to normalize and reencode my FLAC files [here]( {% post_url 2014-11-04-normalizing-flac-files %} ).
 I noted at the end that one of the issues with using bash scripts, or rather more specifically, with `getopt`, is that it has problems telling the difference between multiple arguments and arguments with spaces in them.
 You can get around that using `getopts`, but then you give up `--long-options`.
