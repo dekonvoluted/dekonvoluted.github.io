@@ -109,6 +109,12 @@ This function is done good to go.
 As long as it's given a valid, absolute directory path, it will merrily recurse and process all files and directories inside.
 If any FLAC files are found, it will attempt to normalize them, else it will leave them alone.
 
+> EDIT: This is still not working as expected.
+> If I launch it into a directory with five albums each having ten FLAC files, it forks fifty processes.
+> If one of the directories has only one file, it will wait to collect the processes before moving on to the next directories.
+> I'm still figuring out why this bit isn't working as expected.
+> I might have to make this forking feature optional, if I can't figure this out.
+
 Great.
 Now, it's time to move on to the next outer layer.
 This function must take a raw input parameter and figure out if it's a valid argument.
