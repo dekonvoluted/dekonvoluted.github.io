@@ -6,11 +6,12 @@ tags: [bash, flac, metaflac, replay gain]
 ---
 
 > This is now part of a series of posts.
-> The updates are as follows.
-
-> [Normalizing FLAC files - With Ruby - Part I]( {% post_url 2014-11-08-normalizing-flac-files-with-ruby-part-i %} )
-
-> [Normalizing FLAC files - With Ruby - Part II]( {% post_url 2014-11-09-normalizing-flac-files-with-ruby-part-ii %} )
+> <ul>
+>     <li>Normalizing FLAC files</li>
+>     <li><a href="{% post_url 2014-11-08-normalizing-flac-files-with-ruby-part-i %}">Normalizing FLAC files - with Ruby - Part I</a></li>
+>     <li><a href="{% post_url 2014-11-09-normalizing-flac-files-with-ruby-part-ii %}">Normalizing FLAC files - with Ruby - Part II</a></li>
+>     <li><a href="{% post_url 2014-11-15-normalizing-flac-files-with-ruby-part-iii %}">Normalizing FLAC files - with Ruby - Part III</a></li>
+> </ul>
 
 I converted my music collection to FLAC sometime in 2011.
 Prior to that, my collection was encoded in the MP3 format.

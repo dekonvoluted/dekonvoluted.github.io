@@ -6,12 +6,13 @@ categories: [user guides]
 tags: [ruby, flac, metaflac, id3tag, replay gain]
 ---
 
-> This is part of a series of posts dealing with a script to normalize FLAC files.
-> The previous entries are as follows:
-
-> [Normalizing FLAC files]( {% post_url 2014-11-04-normalizing-flac-files %} )
-
-> [Normalizing FLAC files - With Ruby - Part I]( {% post_url 2014-11-08-normalizing-flac-files-with-ruby-part-i %} )
+> This is part of a series of posts.
+> <ul>
+>     <li><a href="{% post_url 2014-11-04-normalizing-flac-files %}">Normalizing FLAC files</a></li>
+>     <li><a href="{% post_url 2014-11-08-normalizing-flac-files-with-ruby-part-i %}">Normalizing FLAC files - with Ruby - Part I</a></li>
+>     <li>Normalizing FLAC files - with Ruby - Part II</li>
+>     <li><a href="{% post_url 2014-11-15-normalizing-flac-files-with-ruby-part-iii %}">Normalizing FLAC files - with Ruby - Part III</a></li>
+> </ul>
 
 I like to think of scripts from the inside out.
 In the [previous update]( {% post_url 2014-11-08-normalizing-flac-files-with-ruby-part-i %} ), I got the core functionality in place.
@@ -109,11 +110,8 @@ This function is done good to go.
 As long as it's given a valid, absolute directory path, it will merrily recurse and process all files and directories inside.
 If any FLAC files are found, it will attempt to normalize them, else it will leave them alone.
 
-> EDIT: This is still not working as expected.
-> If I launch it into a directory with five albums each having ten FLAC files, it forks fifty processes.
-> If one of the directories has only one file, it will wait to collect the processes before moving on to the next directories.
-> I'm still figuring out why this bit isn't working as expected.
-> I might have to make this forking feature optional, if I can't figure this out.
+> EDIT: As it turned out, this function was actually NOT good to go.
+> Read the [next update]({% post_url 2014-11-15-normalizing-flac-files-with-ruby-part-iii %}) to checkout the solution.
 
 Great.
 Now, it's time to move on to the next outer layer.
