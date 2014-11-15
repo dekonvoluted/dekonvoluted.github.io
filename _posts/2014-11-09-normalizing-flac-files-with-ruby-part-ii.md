@@ -13,6 +13,7 @@ tags: [ruby, flac, metaflac, id3tag, replay gain]
 >     <li>Normalizing FLAC files - with Ruby - Part II</li>
 >     <li><a href="{% post_url 2014-11-15-normalizing-flac-files-with-ruby-part-iii %}">Normalizing FLAC files - with Ruby - Part III</a></li>
 > </ul>
+> The code is maintained in [this repository](https://github.com/dekonvoluted/normalizeFLAC).
 
 I like to think of scripts from the inside out.
 In the [previous update]( {% post_url 2014-11-08-normalizing-flac-files-with-ruby-part-i %} ), I got the core functionality in place.

@@ -13,6 +13,7 @@ tags: [ruby, flac, recursion]
 >     <li><a href="{% post_url 2014-11-09-normalizing-flac-files-with-ruby-part-ii %}">Normalizing FLAC files - with Ruby - Part II</a></li>
 >     <li>Normalizing FLAC files - with Ruby - Part III</li>
 > </ul>
+> The code is maintained in [this repository](https://github.com/dekonvoluted/normalizeFLAC).
 
 I thought I was done with this project, but I had one niggling issue at the end of the last update.
 Let me explain the issue first.
