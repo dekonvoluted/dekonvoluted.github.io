@@ -102,7 +102,7 @@ end
 
 This turned out to be a good thing as this bit of code actually throws an error which led me to the root cause of the problem.
 
-    ./normalizeFLAC.rb:23:in `wait': No child processes (Errno::ECHILD)
+    ./normalizeFLAC.rb:22:in `wait': No child processes (Errno::ECHILD)
 
 The error is because I called `Process.wait`, but on the first level, there were no files and no child processes to wait for.
 And there was the answer I was looking for.
@@ -116,4 +116,20 @@ The fix for this is to use `Process.waitall` which, unlike `Process.wait`, waits
 It also doesn't throw errors if there are no child processes to wait for.
 With this simple fix, the code now behaves as I expect it to.
 And I can finally move on to the next project.
+
+{% highlight diff linenos %}
+diff --git a/normalizeFLAC.rb b/normalizeFLAC.rb
+index 217e949..e3c586d 100755
+--- a/normalizeFLAC.rb
++++ b/normalizeFLAC.rb
+@@ -93,7 +93,7 @@ def processDir( dirPath )
+         end
+     end
+
+-    Process.wait
++    Process.waitall
+ end
+
+ # Process an input argument
+{% endhighlight %}
 
