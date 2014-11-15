@@ -41,9 +41,7 @@ This is because these FLAC files don't always come from audio CDs and I want to 
 
 To reencode a FLAC file, one would call the `flac` command like this,
 
-{% highlight bash linenos %}
-flac --silent --force foo.flac
-{% endhighlight %}
+    flac --silent --force foo.flac
 
 This will quietly decode and encode the FLAC file in place.
 However, every once in a while, you might come across a FLAC file that has an ID3 tag.
@@ -54,16 +52,12 @@ In that case, you'll get an error like this,
 If that happens, we need to follow a different route.
 First, let's decode the FLAC data into a WAV file like this,
 
-{% highlight bash linenos %}
-flac --silent --decode --output-name=foo.wav foo.flac
-{% endhighlight %}
+    flac --silent --decode --output-name=foo.wav foo.flac
 
 Next, we need to save the Vorbis tag information in the file.
 To do this, we'll export the tags to a text file.
 
-{% highlight bash linenos %}
-metaflac --export-tags-to=foo.ini foo.flac
-{% endhighlight %}
+    metaflac --export-tags-to=foo.ini foo.flac
 
 The contents of this exported file look something like this,
 
@@ -78,15 +72,11 @@ DATE=1999
 
 Now, we need to encode the WAV file back into FLAC.
 
-{% highlight bash linenos %}
-flac --silent --output-name=bar.flac foo.wav
-{% endhighlight %}
+    flac --silent --output-name=bar.flac foo.wav
 
 And reapply the tags back to the fresh FLAC file.
 
-{% highlight bash linenos %}
-metaflac --import-tags-from=foo.ini bar.flac
-{% endhighlight %}
+    metaflac --import-tags-from=foo.ini bar.flac
 
 Let's put this into a nice bash function.
 This forms the inner-most function of our script and is called only when absolutely necessary.
