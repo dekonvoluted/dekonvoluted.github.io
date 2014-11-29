@@ -2,18 +2,11 @@
 title: Normalizing FLAC files - with Ruby
 subtitle: Part III
 layout: post
+series: normalizing-flac-files
+repo: https://github.com/dekonvoluted/normalizeFLAC
 categories: [user guides]
 tags: [ruby, flac, recursion]
 ---
-
-> This is the last part of a series of posts.
-> <ul>
->     <li><a href="{% post_url 2014-11-04-normalizing-flac-files %}">Normalizing FLAC files</a></li>
->     <li><a href="{% post_url 2014-11-08-normalizing-flac-files-with-ruby-part-i %}">Normalizing FLAC files - with Ruby - Part I</a></li>
->     <li><a href="{% post_url 2014-11-09-normalizing-flac-files-with-ruby-part-ii %}">Normalizing FLAC files - with Ruby - Part II</a></li>
->     <li>Normalizing FLAC files - with Ruby - Part III</li>
-> </ul>
-> The code is maintained in [this repository](https://github.com/dekonvoluted/normalizeFLAC).
 
 I thought I was done with this project, but I had one niggling issue at the end of the last update.
 Let me explain the issue first.

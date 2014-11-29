@@ -1,18 +1,11 @@
 ---
 title: Normalizing FLAC files
 layout: post
+repo: https://github.com/dekonvoluted/normalizeFLAC
+series: normalizing-flac-files
 categories: [user guides]
 tags: [bash, flac, metaflac, replay gain]
 ---
-
-> This is now part of a series of posts.
-> <ul>
->     <li>Normalizing FLAC files</li>
->     <li><a href="{% post_url 2014-11-08-normalizing-flac-files-with-ruby-part-i %}">Normalizing FLAC files - with Ruby - Part I</a></li>
->     <li><a href="{% post_url 2014-11-09-normalizing-flac-files-with-ruby-part-ii %}">Normalizing FLAC files - with Ruby - Part II</a></li>
->     <li><a href="{% post_url 2014-11-15-normalizing-flac-files-with-ruby-part-iii %}">Normalizing FLAC files - with Ruby - Part III</a></li>
-> </ul>
-> The code is maintained in [this repository](https://github.com/dekonvoluted/normalizeFLAC).
 
 I converted my music collection to FLAC sometime in 2011.
 Prior to that, my collection was encoded in the MP3 format.

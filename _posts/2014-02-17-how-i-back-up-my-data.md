@@ -1,6 +1,7 @@
 ---
 title: How I back up my data
 layout: post
+repo: https://github.com/dekonvoluted/archive
 categories: [user guides]
 tags: [python, rsync, ext4, backup]
 ---
