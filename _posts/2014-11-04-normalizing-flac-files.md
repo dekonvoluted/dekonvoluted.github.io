@@ -30,7 +30,7 @@ This album art, by the way, is also embedded into the Vorbis tag.
 I also use this opportunity to re-encode the music file.
 This is because these FLAC files don't always come from audio CDs and I want to get rid of any non-standard tags, etc.
 
-### Re-encoding
+# Re-encoding
 
 To reencode a FLAC file, one would call the `flac` command like this,
 
@@ -102,7 +102,7 @@ reencode()
 }
 {% endhighlight %}
 
-### Normalizing
+# Normalizing
 
 This represents the "normal" code-path.
 The input to this function is a FLAC file.

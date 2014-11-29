@@ -19,16 +19,19 @@ If you don't have a backup strategy in place, hopefully, this will get you start
 
 I have data spread over three volumes.
 
-* #### Home
-My home directory contains active projects I'm working on, application settings, crypto keys, important documents, etc.
-This is currently on a 180 GB SSD.
+* **Home**
 
-* #### Archive
-Cold storage for files that I don't think I'll need access any time soon.
-This is a sparsely utilized 1 TB HDD.
+  My home directory contains active projects I'm working on, application settings, crypto keys, important documents, etc.
+  This is currently on a 180 GB SSD.
 
-* #### Media
-Entertainment files---movies, music, etc. on a 3 TB HDD.
+* **Archive**
+
+  Cold storage for files that I don't think I'll need access any time soon.
+  This is a sparsely utilized 1 TB HDD.
+
+* **Media**
+
+  Entertainment files---movies, music, etc. on a 3 TB HDD.
 
 My backup strategy is to make periodic, incremental copies of my three volumes.
 I currently to this to two HDDs, one backing up my home and my archive and the other entirely devoted to backing up my media.
@@ -71,7 +74,7 @@ And the corresponding destination could look something like this,
     ├── 2014-02-13/
     └── latest -> 2014-02-13/`
 
-### Implementation
+# Implementation
 
 At its core, the python script needs to execute an `rsync` call like this,
 

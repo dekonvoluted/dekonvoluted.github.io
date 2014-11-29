@@ -172,7 +172,7 @@ We can just loop over them and process each in turn.
 This script can now do everything the bash script could do, while able to handle short and long options, files and directories or a mix of both, with and without spaces in them.
 
 
-### Next steps
+# Next steps
 
 One thing I would like to improve is to take in both process and processDir into the FlacFile class (perhaps renaming it to something like Normalizer or Reencoder).
 That way, the outer loop just sifts through inputs and feeds absolute paths (when available) to the class and the class goes off and does the rest.
