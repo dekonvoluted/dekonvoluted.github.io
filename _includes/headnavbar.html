@@ -1,0 +1,28 @@
+<div class="navbar">
+    {% if page.previous %}
+       {% if page.previous.subtitle %}
+            <a href="{{ page.previous.url }}" id="prev">{{ page.previous.title }} - {{ page.previous.subtitle }}</a>
+        {% else %}
+            <a href="{{ page.previous.url }}" id="prev">{{ page.previous.title }}</a>
+        {% endif %}
+    {% endif %}
+
+    {% if page.next %}
+        {% if page.next.subtitle %}
+            <a href="{{ page.next.url }}" id="next">{{ page.next.title }} - {{ page.next.subtitle }}</a>
+        {% else %}
+            <a href="{{ page.next.url }}" id="next">{{ page.next.title }}</a>
+        {% endif %}
+    {% endif %}
+
+    <br>
+
+    <a href="{{ page.url }}"><div class="pagetitle">{{ page.title }}<br>{{ page.subtitle }}</div></a>
+
+    <div class="metadata">
+        <small><i>Categories</i>: {{ page.categories | array_to_sentence_string }}, <i>Tags</i>: {{ page.tags | array_to_sentence_string }}, <i>Published on</i>: {{ page.date | date: "%Y-%m-%d" }}</small>
+    </div>
+</div>
+
+<br>
+

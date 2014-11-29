@@ -1,5 +1,4 @@
-.highlight { color: #dcdccc; background-color: #2c2c2c }    /* Default */
-.lineno    { color: #ddddaa; font-style: italic }           /* Line number */
+.lineno    { color: #664; font-style: italic }           /* Line number */
 
 .k  { color: #60b48a; font-weight: bold }   /* Keyword */
 .kn { color: #60b48a; font-weight: bold }   /* Keyword.Namespace */
@@ -26,6 +25,7 @@
 .ge { font-style: italic }                  /* Generic.Emph */
 .gs { font-weight: bold }                   /* Generic.Strong */
 
+.n  { color: #ffffff }                      /* Name */
 .na { color: #7D9029 }                      /* Name.Attribute */
 .nb { color: #008000 }                      /* Name.Builtin */
 .nc { color: #9AB8D7; font-weight: bold }   /* Name.Class */
@@ -69,3 +69,4 @@
 
 .err { border: 1px solid #FF0000 }          /* Error */
 .w   { color: #bbbbbb }                     /* Text.Whitespace */
+

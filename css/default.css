@@ -1,0 +1,126 @@
+body {
+    color: #000;
+    background-color: #ddf;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-family: serif;
+}
+
+a:link {
+    color: #d60;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #a40;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #f80;
+    text-decoration: none;
+}
+
+h1 {
+    color: #00a;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+h2 {
+    color: #008;
+    font-size: 18px;
+    text-align: center;
+}
+
+h3 {
+    color: #006;
+    font-size: 16px;
+}
+
+blockquote {
+    background-color: #eee;
+    padding: 5px;
+    border-radius: 25px;
+    font-size: small;
+}
+
+pre {
+    color: #464;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+.highlight {
+    color: #fff;
+    background-color: #221;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.header {
+    display: block;
+    overflow: auto;
+}
+
+#sitetitle {
+    color: #00a;
+    font-family: sans-serif;
+    font-size: 48px;
+    float: left;
+}
+
+.pagetitle {
+    color: #00a;
+    font-family: sans-serif;
+    font-size: 32px;
+}
+
+#about {
+    color: #008;
+    font-family: sans-serif;
+    font-size: 24px;
+    float: right;
+}
+
+.navbar {
+    display: block;
+    overflow: auto;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.metadata {
+    text-align: left
+}
+
+#prev {
+    float: left;
+}
+
+#next {
+    float: right;
+}
+
+.footnavbar {
+    display: block;
+    overflow: auto;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+}
+
+#home {
+    float: left;
+}
+
+
+.post {
+    background-color: #fff;
+    padding: 5% 10%;
+    border-radius: 25px;
+}
+

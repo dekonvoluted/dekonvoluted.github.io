@@ -1,20 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en-US">
-
     {% include head.html %}
-
     <body>
-
-        <h1>{{ site.title }}</h1>
-
+        <a id="top">
+        {% include header.html %}
         {{ content }}
-
-        <hr>
-
-        &copy; {{ site.time | date: "%Y" }} {{ site.author }}.
-
+        {% include footer.html %}
     </body>
-
 </html>
 
