@@ -12,10 +12,10 @@ As I learn more things, I imagine the site would start looking spiffier.
 # Blog posts
 
 {% for post in site.posts %}
-    {% if post.subtitle %}
+{% if post.subtitle %}
 * {{ post.date | date: "%Y-%m-%d" }}: [{{ post.title }} - {{ post.subtitle }}]({{ post.url }})
-    {% else %}
+{% else %}
 * {{ post.date | date: "%Y-%m-%d" }}: [{{ post.title }}]({{ post.url }})
-    {% endif %}
+{% endif %}
 {% endfor %}
 

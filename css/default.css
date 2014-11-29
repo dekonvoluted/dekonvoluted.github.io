@@ -87,10 +87,6 @@ pre {
     text-align: center;
 }
 
-.metadata {
-    text-align: left
-}
-
 #prev {
     float: left;
 }
@@ -106,6 +102,16 @@ pre {
     padding: 10px 0px;
 }
 
+.metadata {
+    text-align: left
+}
+
+.post {
+    background-color: #fff;
+    padding: 5% 10%;
+    border-radius: 25px;
+}
+
 .footnavbar {
     display: block;
     overflow: auto;
@@ -117,12 +123,5 @@ pre {
 
 #home {
     float: left;
-}
-
-
-.post {
-    background-color: #fff;
-    padding: 5% 10%;
-    border-radius: 25px;
 }
 
