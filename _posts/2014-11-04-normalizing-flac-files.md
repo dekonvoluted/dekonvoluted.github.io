@@ -163,7 +163,7 @@ processDir()
             # Act only on regular directories
             if [ -h "${content}" ]
             then
-                echo "Avoiding link "${content}"
+                echo "Avoiding link ${content}"
             else
                 processDir "${content}"
             fi
