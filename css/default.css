@@ -70,11 +70,6 @@ pre {
     float: left;
 }
 
-.pagetitle {
-    color: #00a;
-    font-family: sans-serif;
-    font-size: 32px;
-}
 
 #about {
     color: #008;
@@ -102,6 +97,13 @@ pre {
 
 #next {
     float: right;
+}
+
+.pagetitle {
+    color: #00a;
+    font-family: sans-serif;
+    font-size: 32px;
+    padding: 10px 0px;
 }
 
 .footnavbar {
