@@ -58,6 +58,10 @@ pre {
     border-radius: 25px;
 }
 
+.highlight:hover {
+    background-color: #110;
+}
+
 .header {
     display: block;
     overflow: auto;
