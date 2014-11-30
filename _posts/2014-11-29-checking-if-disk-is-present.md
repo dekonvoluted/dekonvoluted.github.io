@@ -135,6 +135,6 @@ Also, the `check_output()` method doesn't cleanly escape quotes in the system co
 When split and decoded, the list of devices can be tested with `blkid` using `subprocess.call()` to get the exit status.
 However, `call()` doesn't redirect the output silently like `subprocess.Popen()` can.
 So, I've also had to forward any output to `/dev/null` to make it work silently.
-In all, while this implementation has the fewest number of lines, it also have the most number of gotchas to trip an unwary (or newbie) programmer up.
+In all, while this implementation has the fewest number of lines, it also has the most number of gotchas to trip an unwary (or newbie) programmer up.
 
 
