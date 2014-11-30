@@ -113,7 +113,7 @@ end
 {% endhighlight %}
 
 Pretty straightforward to understand.
-The list of drives is split using newlines into individual devices, each of which is queried using blkid.
+The list of drives is split using newlines into individual devices, each of which is queried using `blkid`.
 When one or more of them returns a zero exit status, the disk is in the drive and ready for use.
 This function then returns an array of all available optical devices.
 
@@ -128,13 +128,18 @@ def list_available_drives():
 {% endhighlight %}
 
 There are several complications here to note.
-First, using `subprocess.check_output` returns a byte array, which looks like this, `b'/dev/sr0\n/dev/sr1\n'`.
-This needs to be split by newline and each element must be converted into string by decoding it.
+First, using `subprocess.check_output()` returns a byte array, which looks like this, `b'/dev/sr0\n/dev/sr1\n'`.
+This needs to be split by newline and each element of that list must be converted into string by decoding it.
+This requires us to provide an encoding.
+UTF-8 seems like a fairly safe choice for this.
 Also, the `check_output()` method doesn't cleanly escape quotes in the system command.
 Notice the `\"` around `/dev/` to prepend it to the device name from `lsblk`.
 
 When split by newline in line 4, the contents of `drives` looks something like this, `[b'/dev/sr0', b'/dev/sr1']`.
 The return statement uses some list comprehension to roll up loops and conditionals into one line and returns a list containing strings, one for each device with a disk in it, `['/dev/sr0', '/dev/sr1']`.
-While this implementation is the shortest by number of lines, it's also got the most number of gotchas.
+The command needs to run in a shell, but I don't really want to see its output.
+I just want the exist status.
+So, I have to forward all output to `/dev/null` as well to make that work.
+In all, while this implementation has the fewest number of lines, it also have the most number of gotchas.
 
 
