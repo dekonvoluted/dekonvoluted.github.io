@@ -123,23 +123,18 @@ Finally, here's an implementation in python.
 from subprocess import check_output, call
 
 def list_available_drives():
-    drives = check_output( "lsblk | awk '/rom/ {print \"/dev/\"$1}'", shell = True ).splitlines()
-    return [ drive.decode( "utf-8" ) for drive in drives if call( "blkid " + drive.decode( "utf-8" ) + "> /dev/null", shell = True ) == 0 ]
+    drives = [ drive.decode() for drive in check_output( "lsblk | awk '/rom/ {print \"/dev/\"$1}'", shell = True ).splitlines() ]
+    return [ drive for drive in drives if call( "blkid " + drive + "> /dev/null", shell = True ) == 0 ]
 {% endhighlight %}
 
 There are several complications here to note.
 First, using `subprocess.check_output()` returns a byte array, which looks like this, `b'/dev/sr0\n/dev/sr1\n'`.
 This needs to be split by newline and each element of that list must be converted into string by decoding it.
-This requires us to provide an encoding.
-UTF-8 seems like a fairly safe choice for this.
-Also, the `check_output()` method doesn't cleanly escape quotes in the system command.
-Notice the `\"` around `/dev/` to prepend it to the device name from `lsblk`.
+Also, the `check_output()` method doesn't cleanly escape quotes in the system command---notice the escaped double quotes, `\"`, around `/dev/` to prepend it to the device name from `lsblk`.
 
-When split by newline in line 4, the contents of `drives` looks something like this, `[b'/dev/sr0', b'/dev/sr1']`.
-The return statement uses some list comprehension to roll up loops and conditionals into one line and returns a list containing strings, one for each device with a disk in it, `['/dev/sr0', '/dev/sr1']`.
-The command needs to run in a shell, but I don't really want to see its output.
-I just want the exist status.
-So, I have to forward all output to `/dev/null` as well to make that work.
-In all, while this implementation has the fewest number of lines, it also have the most number of gotchas.
+When split and decoded, the list of devices can be tested with `blkid` using `subprocess.call()` to get the exit status.
+However, `call()` doesn't redirect the output silently like `subprocess.Popen()` can.
+So, I've also had to forward any output to `/dev/null` to make it work silently.
+In all, while this implementation has the fewest number of lines, it also have the most number of gotchas to trip an unwary (or newbie) programmer up.
 
 
