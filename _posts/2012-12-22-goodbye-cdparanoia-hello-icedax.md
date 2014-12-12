@@ -19,7 +19,7 @@ Each of the folders represents one of the encoders you have available, all confi
 You could just drag drop an entire folder, or individual songs from the folder and the song will be transcoded magically for you.
 It all looks something like this:
 
-![audiocd](http://i.imgur.com/2vGo1QH.png)
+![audiocd](/images/audiocd.png)
 
 In theory, this should make for a very pleasant experience.
 However, in practice, I encountered several bugs.
