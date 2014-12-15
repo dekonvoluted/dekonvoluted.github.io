@@ -25,4 +25,6 @@ This metadata will NOT be present in your backups, unless you explicitly use the
 
 And what if you want to use `cp` and preserve these attributes?
 Just use the `-a/--archive` flag and you're good to go!
+All attributes are preserved when you use `--archive` with `cp`.
+It's only `rsync` that needs the extra flag to preserve these extended attributes.
 
