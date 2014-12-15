@@ -23,3 +23,6 @@ user.xdg.tags="Drama Film,Japanese Film"
 This example shows a movie rated 6 (out of 10) and tagged with some descriptive tags.
 This metadata will NOT be present in your backups, unless you explicitly use the `--xattrs` option.
 
+And what if you want to use `cp` and preserve these attributes?
+Just use the `-a/--archive` flag and you're good to go!
+
