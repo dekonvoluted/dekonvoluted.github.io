@@ -22,7 +22,7 @@ Here's how to implement this.
 
 1. Install synergy on both computers.
 
-    Arch linux has synergy in its ‘extra’ repository.
+    Arch linux has synergy in its `extra` repository.
 
         # pacman -S synergy
 

@@ -26,7 +26,7 @@ I can now do primitive 2-D graphics, which is nice.
 
 There's plenty of things left to learn in 2014.
 My first task here is to complete the tutorial.
-Then, I plan to devote some time working on the Equilibrium project (I’ll write about that sometime soon).
+Then, I plan to devote some time working on the Equilibrium project (I'll write about that sometime soon).
 With a little more familiarity with Qt, I think I can take on some of the junior jobs on bugs.kde.org.
 
 # C++
