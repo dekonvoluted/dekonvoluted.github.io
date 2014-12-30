@@ -1,6 +1,6 @@
 ---
 title: Automatically disable touchpad while typing
-layout: posts
+layout: post
 categories: [ user guides ]
 tags: [ synaptics ]
 ---
