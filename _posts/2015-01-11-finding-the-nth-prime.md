@@ -19,7 +19,7 @@ Since 2 is tricky, let's initialize our list of primes with 2.
 Count from 3 onwards till we've found the requisite number of primes.
 For each number, test divisibility by all the primes known before it.
 To save time, we only need to test divisibility for primes whose squares are less than the candidate number.
-To further save time, we'll count up in steps of two (skipping all even numbers entirely.
+To further save time, we'll count up in steps of two (skipping all even numbers entirely).
 Also, since we're skipping even numbers entirely, we needn't test divisibility by two, except for 3.
 
 {% highlight cpp linenos %}
