@@ -191,7 +191,7 @@ sys     0m0.003s
 {% endhighlight %}
 
 Yup.
-We definitely got a tad bit slower.
+We definitely got a tad bit slower, presumably from having to store and retrieve the squares of all the primes found so far.
 Could higher optimization levels help us now?
 
 {% highlight console %}
@@ -211,6 +211,7 @@ user    0m2.217s
 sys     0m0.003s
 {% endhighlight %}
 
+So, caching the squares managed to save us about 10 ms at the end of the day.
 What if we reserve space for the vectors ahead of time, since we already know that we're out to find the first `n` primes?
 
 {% highlight diff %}
@@ -242,66 +243,95 @@ user    0m2.213s
 sys     0m0.000s
 {% endhighlight %}
 
-Well, that's about as far as it goes with C++, I guess.
+That shaved off another 10 ms, but I'm starting to run out of ideas and it looks like that's as far as this goes with C++.
 Still, 2.2 seconds to the millionth prime isn't too shabby.
 
 Let's try implementing the same algorithm in python.
-Now, python is interpreted and so we'll use the benefit of all that we learned speeding up the code in C++ to help it run as fast as possible.
+Now, python is interpreted and that puts it at a disadvantage, particularly since we asked the compiler to optimize the code.
+Let's run this without any compiler optimization.
+
+{% highlight console %}
+$ g++ --std=c++11 -o nth-prime nth-prime.cpp
+$ time ./nth-prime 1000000
+15485863
+
+real    0m14.152s
+user    0m14.143s
+sys     0m0.007s
+{% endhighlight %}
+
+Okay, so it takes about 14 seconds to hit the millionth prime.
+Now, let's use all the tricks we learned so far to get python off to a speedy start.
 
 {% highlight python linenos %}
 #!/usr/bin/env python
 
-n = 1000000
+import sys
 
-# Start with 2 already added to list
-# Reserve enough memory
-primes = [ 2 ] * n
-primesq = [ 4 ] * n
+def nth_prime( n ):
+    '''Return the nth prime number'''
 
-primesFound = 1
+    if ( n < 1 ):
+        return None
 
-# Test only odd numbers
-primeCount = 0
-isPrime = True;
-candidate = 3
-while primesFound < n:
-    while primesq[ primeCount ] <= candidate:
-        if candidate % primes[ primeCount ] == 0:
-            isPrime = False
-            break
-        primeCount += 1
+    # Start with 2 already added to the list
+    # Reserve enough memory
+    primes = [ 2 ] * n
+    primesq = [ 4 ] * n
 
-    if isPrime:
-        primes[ primesFound ] = candidate
-        primesq[ primesFound ] = candidate * candidate
-        primesFound += 1
-    else:
-        isPrime = True
+    primesFound = 1
+    primeCount = 0
+    isPrime = True
+    candidate = 3
 
-    primeCount = 1
-    candidate += 2
+    while primesFound < n:
+        while primesq[ primeCount ] <= candidate:
+            if candidate % primes[ primeCount ] == 0:
+                isPrime = False
+                break
+            primeCount += 1
 
-print( primes[ n - 1 ] )
+        if isPrime:
+            primes[ primesFound ] = candidate
+            primesq[ primesFound ] = candidate * candidate
+            primesFound += 1
+        else:
+            isPrime = True
+
+        # Test from 3 onwards and skip all even numbers
+        primeCount = 1
+        candidate += 2
+
+    return primes[ n - 1 ]
+
+print( nth_prime( int( sys.argv[ 1 ] ) ) )
 {% endhighlight %}
 
-Okay how bad can it be?
+Okay, we only test odd numbers, cache all the previous primes and their squares and only test divisibility with primes smaller than the square root of a number.
+Let's see how fast this runs.
 
 {% highlight console %}
 $ chmod +x ./nth-prime.py
-$ time ./nth-prime.py
+$ time ./nth-prime.py 1000000
 15485863
 
-real    5m6.184s
-user    5m5.923s
-sys     0m0.193s
+real    2m53.168s
+user    2m52.970s
+sys     0m0.150s
 {% endhighlight %}
 
-The above results were obtained with gcc 4.9.2 and python 3.4.2 on a Core i7 920 machine with 9 GB of RAM (I doubt that mattered too much).
+Oh wow.
+The same implementation in python runs about ten times slower than the *slowest* it ran in C++ (without compiler optimizations).
+Compared to the 2.2 seconds we could pare the C++ time down to, python's 170 second run time looks very pitiable indeed.
 
-From my notes from back then (2011), on the computer I was testing this out on, C++ got to the millionth prime in 11 seconds, python took 10 minutes and a second and MATLAB took 4 minutes and 40 seconds.
-Of course, all of that testing was done with different versions of gcc and python, so the numbers haven't scaled evenly.
+I'm sure this can be sped up further as I get more comfortable with python, but this is consistent with my notes from 2011 when I was just starting to play with python.
+On the computer I was testing this out on then, C++ got to the millionth prime in 11 seconds, and python took almost 17 minutes before I optimized the code down to a hair over 10 minutes.
+At the time, I was also using MATLAB, which took 4 minutes and 40 seconds to work through the same algorithm.
+Of course, all of that testing was done with different versions of gcc and python, and the older code was a little ...different, so the numbers haven't scaled evenly.
 
-So, anyway, that's why I stayed away from scripting languages as much as possible.
-Sorry, python, sorry, ruby.
-I should have learned to appreciate you two earlier...
+So, anyway, the results of this experiment was largely why I avoided using python to process the data for my thesis.
+This also meant that I generally avoided using both python and ruby for a very long time because I always thought of them as slow lumbering beasts.
+It's only recently that I started rediscovering ruby and began appreciating just how easy it is to get things done with it.
+
+For the record, the above results were obtained with gcc 4.9.2 and python 3.4.2 on a Core i7 920 machine with 9 GB of RAM.
 
