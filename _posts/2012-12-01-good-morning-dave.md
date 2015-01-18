@@ -3,6 +3,7 @@ title: Good morning, Dave.
 layout: post
 categories: [ user guides ]
 tags: [ espeak, festival, jovie, speech-dispatcher ]
+comments: true
 ---
 
 This post has rather little to do with HAL or 2001.

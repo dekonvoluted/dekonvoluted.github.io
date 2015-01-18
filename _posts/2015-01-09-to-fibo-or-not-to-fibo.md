@@ -3,6 +3,7 @@ title: To Fibo or not to Fibo
 layout: post
 categories: [ puzzles ]
 tags: [ C++ ]
+comments: true
 ---
 
 Over the break, I got to solve a problem that went something like this:

@@ -4,6 +4,7 @@ layout: post
 repo: https://github.com/dekonvoluted/archive
 categories: [user guides]
 tags: [python, rsync, ext4, backup]
+comments: true
 ---
 
 I suppose, if I had to put a number on it, it would be... three.

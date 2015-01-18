@@ -3,6 +3,7 @@ title: Using VNC between two linux computers
 layout: post
 categories: [ user guides ]
 tags: [ x11vnc ]
+comments: true
 ---
 
 # Problem Background

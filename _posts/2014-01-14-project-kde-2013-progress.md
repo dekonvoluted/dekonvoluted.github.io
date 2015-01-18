@@ -4,6 +4,7 @@ subtitle: 2013 progress
 layout: post
 categories: [ project KDE ]
 tags: [ kde ]
+comments: true
 ---
 
 I thought it might be a good idea to revisit my competency in the four tools I [set out]({% post_url 2012-11-18-project-kde-the-first-steps %}) to master in 2012.

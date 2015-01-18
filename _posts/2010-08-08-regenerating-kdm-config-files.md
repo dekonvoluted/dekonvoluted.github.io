@@ -3,6 +3,7 @@ title: Regenerating KDM config files
 layout: post
 categories: [ user guides ]
 tags: kdm
+comments: true
 ---
 
 Most people will not encounter any issues with the login screen.

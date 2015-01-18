@@ -3,6 +3,7 @@ title: Redshift your desktop
 layout: post
 categories: [ user guides ]
 tags: [ redshift ]
+comments: true
 ---
 
 Several years ago, I came across [f.lux](https://justgetflux.com/) which is a tool to change the color temperature of your desktop depending on the local time.

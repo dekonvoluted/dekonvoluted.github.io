@@ -4,6 +4,7 @@ layout: post
 repo: fix.me
 categories: [ user guides ]
 tags: [ unicode, compose ]
+comments: true
 ---
 
 > Before we begin, I need to mention that much of this applies to X-based GUI's.

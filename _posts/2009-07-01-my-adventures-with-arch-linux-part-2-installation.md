@@ -5,6 +5,7 @@ layout: post
 series: archlinux
 categories: [ user guides ]
 tags: [ arch linux ]
+comments: true
 ---
 
 > This article refers to deprecated software and methods.

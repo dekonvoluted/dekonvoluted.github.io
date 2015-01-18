@@ -3,6 +3,7 @@ title: Manipulating subtitles
 layout: post
 categories: [user guides]
 tags: [dvd, bluray, srt, encoding, utf8, iconv, dos2unix, srttool, mkvtoolnix]
+comments: true
 ---
 
 Subtitles for movies come in a variety of formats.

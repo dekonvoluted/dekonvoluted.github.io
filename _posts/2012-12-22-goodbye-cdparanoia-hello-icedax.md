@@ -3,6 +3,7 @@ title: Goodbye CDparanoia, hello Icedax!
 layout: post
 categories: [ user guides ]
 tags: [ cdparanoia, icedax ]
+comments: true
 ---
 
 I had a simple task to complete today.

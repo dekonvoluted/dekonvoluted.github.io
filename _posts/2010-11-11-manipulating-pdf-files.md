@@ -3,6 +3,7 @@ title: Manipulating PDF files
 layout: post
 categories: [ user guides ]
 tags: [ pdf, ghostscript, pdfmarks, poppler ]
+comments: true
 ---
 
 From time to time, I've needed to reorganize PDF documents, by either combining several files into one large file or breaking up a large file into several small ones.

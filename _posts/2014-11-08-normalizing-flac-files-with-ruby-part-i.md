@@ -6,6 +6,7 @@ repo: https://github.com/dekonvoluted/normalizeFLAC
 series: normalizing-flac-files
 categories: [user guides]
 tags: [ruby, flac, metaflac, id3tag, replay gain]
+comments: true
 ---
 
 I wrote about the script I use to normalize and reencode my FLAC files [here]( {% post_url 2014-11-04-normalizing-flac-files %} ).

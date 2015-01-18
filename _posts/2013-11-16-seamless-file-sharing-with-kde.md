@@ -3,6 +3,7 @@ title: Seamless file sharing with KDE
 layout: post
 categories: [ user guides ]
 tags: [ avahi, fish, ssh ]
+comments: true
 ---
 
 This post documents what I did to get my three (KDE-powered) computers to seamless share files.

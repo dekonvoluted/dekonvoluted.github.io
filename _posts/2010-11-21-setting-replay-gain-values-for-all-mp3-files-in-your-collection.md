@@ -3,6 +3,7 @@ title: Setting replay gain values for all mp3 files in your collection
 layout: post
 categories: [ user guides ]
 tags: [ mp3gain ]
+comments: true
 ---
 
 I have all my files stored in my music directory in this structure:

@@ -3,6 +3,7 @@ title: Wiping out GPT or MBR partition tables
 layout: post
 categories: [ user guides ]
 tags: [ gpt, mbr, sgdisk ]
+comments: true
 ---
 
 Use this when you've utterly cocked up partitioning a disk and would simply like to start fresh without any old partition tables of any kind, whether they're GPT or MBR.

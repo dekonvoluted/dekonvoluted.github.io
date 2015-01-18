@@ -3,6 +3,7 @@ title: Freedom delayed vs. Freedom denied
 layout: post
 categories: [ musings ]
 tags: [ gpl, free software ]
+comments: true
 ---
 
 # If you build it, they will come
