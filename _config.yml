@@ -5,18 +5,3 @@ timezone: "America/Los_Angeles"
 highlighter: pygments
 encoding: "utf-8"
 
-defaults:
-    -
-        scope:
-            path: ""
-            type: "pages"
-        values:
-            layout: "default"
-    -
-        scope:
-            path: "_posts/"
-            type: "posts"
-        values:
-            layout: "post"
-
-
