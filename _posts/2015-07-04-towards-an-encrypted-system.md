@@ -8,7 +8,7 @@ tags: [ dm-crypt, luks ]
 comments: true
 ---
 
-This is the first of a multi-part series focusing on setting up a secure linux system.
+This is the first of a multi-part series focusing on setting up a secure Linux system.
 While this and the following parts are written with a laptop/netbook form factor in mind, the tools and steps can, with equal validity, be applied towards setting up a secure desktop system as well.
 
 This first part will deal with encrypting the file system on your computer.
@@ -19,67 +19,68 @@ Before we begin, let's get a few FAQs out of the way.
 
 1. Why should I bother with encryption?
 
-Sigh.
-It is perhaps a sign of the times that this question even needs to be answered.
-It comes down to mindset, I'm afraid and I encourage you to think of encrypted systems the same way you would think about password-secured logins.
-Just like a password secures a login, an encrypted file system is secured against unauthorized access to your files on the physical hardware.
+    Sigh.
+    It is perhaps a sign of the times that this question even needs to be answered.
+    It comes down to mindset, I'm afraid and I encourage you to think of encrypted systems the same way you would think about password-secured logins.
+    Just like a password secures a login, an encrypted file system is secured against unauthorized access to your files on the physical hardware.
 
 2. How inconvenient is it to work with an encrypted file system?
 
-This really depends on the encryption scheme you choose.
-In this writeup, I'll use what comes built in with a standard linux kernel, dm-crypt, to manage encrypted volumes which have a LUKS header, so, I'll answer for that.
-A disk partition encrypted this way starts with a LUKS (Linux Unified Key Setup) header which specifies between one and eight ways of decrypting it.
-Each of these ways or 'slots' could either use a passphrase, like a password, or a key file, which is just a regular file being used as a sort of password.
-If a key file cannot be found (it would usually be on removable media like a USB drive), the system will fall back to a passphrase.
-You don't really have to have eight passwords or key files, mind you.
-Typically, you'd set up a key file and a passphrase as a backup.
+    This really depends on the encryption scheme you choose.
+    In this writeup, I'll use what comes built in with a standard linux kernel, dm-crypt, to manage encrypted volumes which have a LUKS header, so, I'll answer for that.
+    A disk partition encrypted this way starts with a LUKS (Linux Unified Key Setup) header which specifies between one and eight ways of decrypting it.
+    Each of these ways or "slots" could either use a passphrase, like a password, or a key file, which is just a regular file being used as a sort of password.
+    If a key file cannot be found (it would usually be on removable media like a USB drive), the system will fall back to a passphrase.
+    You don't really have to have eight passwords or key files, mind you.
+    Typically, you'd set up a key file and a passphrase as a backup.
 
-So, in practice, it's not any more inconvenient than having to either stick a USB drive in when booting up, or if you lose it, type in a password.
-You will not need to decrypt the hard disk when resuming from sleep.
+    So, in practice, it's not any more inconvenient than having to either stick a USB drive in when booting up, or if you lose it, type in a password.
+    You will not need to decrypt the hard disk when resuming from sleep.
 
 3. Will encryption cost performance? Will it slow down my system?
 
-This is unavoidable, but it's hardly perceptible on my netbook.
-So, physics says yes, but in actual usage, it's not noticeable.
+    This is unavoidable, but it's hardly perceptible on my netbook.
+    So, physics says yes, but in actual usage, it's not noticeable.
 
 4. What if I lose the USB key with the key file or forget my passphrase?
 
-Since the whole point of encrypting a disk is to deny access in such cases, the answer is that you will not be able to access your files without being able to decrypt the medium.
+    Since the whole point of encrypting a disk is to deny access in such cases, the answer is that you will not be able to access your files without being able to decrypt the medium.
 
-In practice, you should have one or more of the following set up to deal with this eventuality:
-- A backup of your key file in a secure place.
-- A physical, written down copy of your passphrase stored in a secure place.
-- A recent backup of your files, stored offline on a encrypted hard disk which uses a different passphrase and/or key file.
+    In practice, you should have one or more of the following set up to deal with this eventuality:
 
-Note that it makes no sense to encrypt your system if backup is not encrypted as well.
+    - A backup of your key file in a secure place.
+    - A physical, written down copy of your passphrase stored in a secure place.
+    - A recent backup of your files, stored offline on a encrypted hard disk which uses a different passphrase and/or key file.
 
-5. Can I use this encrypted drive with a Windows or Mac computer?
+    Note that it makes no sense to encrypt your system if backup is not encrypted as well.
 
-Yes, probably.
-I don't know for sure.
-Since I'm not really interested in a multi-OS setup, I didn't bother to look into this much deeper than a cursory search.
-The results seem... promising.
+5. Can I use this encrypted drive with a Windows or MacOS computer?
+
+    Yes, probably.
+    I don't know for sure.
+    Since I'm not really interested in a multi-OS setup, I didn't bother to look into this much deeper than a cursory search.
+    The results seem... promising.
 
 6. Can I encrypt the file system of a currently functioning computer?
 
-There are ways to create encrypted containers to store files in, while the remaining system is unencrypted.
-However, this post will focus on full file system encryption and that needs to happen when the partitions are being prepared during installation.
+    There are ways to create encrypted containers to store files in, while the remaining system is unencrypted.
+    However, this post will focus on full file system encryption and that needs to happen when the partitions are being prepared during installation.
 
 7. How hard is it to set up an encrypted system? How long will it take?
 
-Not really and not very long.
-In fact, you just need to follow a couple of extra steps during the installation process.
+    Not really and not very long.
+    In fact, you just need to follow a couple of extra steps during the installation process.
 
 8. What are my options? What if I want something else, like those encrypted containers you just mentioned?
 
-Be warned---the variety and details of the options available can be a bit overwhelming to take in all at once.
-The arch wiki offers a concise writeup on [how the process works](https://wiki.archlinux.org/index.php/Disk_encryption#How_the_encryption_works) along with a summary of [various implementations](https://wiki.archlinux.org/index.php/Disk_encryption#Available_methods).
-For reference, the focus of this post will be on using `dm-crypt` to manage LUKS volumes.
+    Be warned---the variety and details of the options available can be a bit overwhelming to take in all at once.
+    The arch wiki offers a concise writeup on [how the process works](https://wiki.archlinux.org/index.php/Disk_encryption#How_the_encryption_works) along with a summary of [various implementations](https://wiki.archlinux.org/index.php/Disk_encryption#Available_methods).
+    For reference, the focus of this post will be on using `dm-crypt` to manage LUKS volumes.
 
 9. Anything else I should know?
 
-Data on an encrypted drive will still be vulnerable to corruption and disk failure.
-Regular backups are pretty much the only safeguard against that.
+    Data on an encrypted drive will still be vulnerable to corruption and disk failure.
+    Regular backups are pretty much the only safeguard against that.
 
 # Setting things up
 
@@ -96,7 +97,7 @@ The [beginner's guide](https://wiki.archlinux.org/index.php/Beginners'_guide) li
 
 Setting up an encrypted system affects steps 3, and 7.
 
-3. Preparing the storage devices
+## Preparing the storage devices
 
 Normally, one would use a tool like `cgdisk` to create partitions on a storage device and then use `mkfs` to format those partitions with a file system.
 We still want to create the partitions on the disk, but we don't want to format those partitions just yet.
@@ -115,10 +116,14 @@ So, the default security level corresponds roughly to using a 128-bit AES encryp
 This isn't a bad starting point at all and unless you feel particular about upping your security level, you could very well go with this default.
 Now, if you do feel that sounds like irresponsible sheep talking, that's fine, too.
 The `cryptsetup` utility has several optional flags to specify the cryptographic scheme you will be using in finer detail.
-You can change the encryption scheme (-c/--cipher), the key size (-s/--key-size), the hashing algorithm (-h/--hash) and a couple of other options.
+You can change the encryption scheme (`-c/--cipher`), the key size (`-s/--key-size`), the hashing algorithm (`-h/--hash`) and a couple of other options.
 [This section](https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Encryption_options_for_LUKS_mode) is written for you.
 In what follows, I'll go with the defaults.
+
 While creating the encrypted partition, `cryptsetup` will also ask for a passphrase.
+Pick a secure passphrase.
+This passphrase length is limited to 512 characters, but you can have multiple passphrases by adding or removing slots.
+All passphrases are equally valid and any of them can be entered to decrypt the device when prompted.
 
 Create encrypted volumes on all the partitions that will be mounted and used.
 Leave the boot partition unencrypted.
@@ -126,7 +131,7 @@ Leave the boot partition unencrypted.
 Once you've created an encrypted volume, it's time to create a file system inside it.
 To do that it must be decrypted so that we can write data to it.
 Decryption is handled by `dm-crypt` by making the decrypted device available under /`dev/mapper` (that's what the `dm` in `dm-crypt` stands for---device mapper) at a sort of mount point of your choosing.
-For the purposes of this post, I'm going to go with something generic like, `my-decrypted-device`, but you could and should pick something a more sensible name for the device.
+For the purposes of this post, I'm going to go with something generic like, `my-decrypted-device`, but you could and should pick a more sensible name for the device.
 For instance, if the device is the root partition, pick `root` or the hostname of the system itself.
 This device name is just the name of the mount point and will not be remembered by the volume, but having a sensible name will help when referring to it in commands and logs.
 
@@ -135,10 +140,6 @@ This device name is just the name of the mount point and will not be remembered 
 {% endhighlight %}
 
 This command will ask for a passphrase to use to decrypt the device.
-Pick a secure passphrase.
-This passphrase length is limited to 512 characters, but you can have multiple passphrases by adding or removing slots.
-All passphrases are equally valid and any of them can be entered to decrypt the device when prompted.
-
 The encrypted partition `/dev/sda3` is now available as a regular, seemingly unencrypted volume at `/dev/mapper/my-decrypted-device`.
 We can use this decrypted volume to create a file system and write data to it.
 
@@ -151,7 +152,7 @@ You can similarly proceed with the rest of the installation procedure using `/de
 Repeat this procedure for every encrypted partition you have created.
 Again, remember that the boot partition will remain unencrypted.
 
-7. Chroot and configure the base system
+## Chroot and configure the base system
 
 This step deviates from the normal route when it comes time to build the initramfs image and setting up the boot loader (GRUB).
 [Here's](https://wiki.archlinux.org/index.php/Dm-crypt/System_configuration) the relevant arch wiki page for reference.
@@ -183,14 +184,8 @@ Again, I've used `my-decrypted-device` here, but you should pick something more 
 Make the following edit in `/etc/default/grub`.
 
 {% highlight diff %}
-- GRUB_CMDLINE_LINUX_DEFAULT="quiet"
-+ GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=UUID=</dev/sda3 UUID>:my-decrypted-device quiet"
-
-
-FIXME: yeah.
-
-
-+ GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=/dev/disk/by-uuid/e852ae5d-82e2-5525-1947-92abc23df27c:my-crypt-device quiet"
+-GRUB_CMDLINE_LINUX_DEFAULT="quiet"
++GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=UUID=<encrypted-device-uuid>:my-decrypted-device quiet"
 {% endhighlight %}
 
 And regenerate the GRUB configuration file.
@@ -204,8 +199,8 @@ This hook is needed to decrypt the encrypted volume during boot up.
 Edit the `/etc/mkinitcpio.conf` file and add the `encrypt' hook before the `filesystems` hook.
 
 {% highlight diff %}
-- HOOKS="base udev autodetect modconf block filesystems keyboard fsck"
-+ HOOKS="base udev autodetect modconf block encrypt filesystems keyboard fsck"
+-HOOKS="base udev autodetect modconf block filesystems keyboard fsck"
++HOOKS="base udev autodetect modconf block encrypt filesystems keyboard fsck"
 {% endhighlight %}
 
 Now, rebuild the initramfs image.
@@ -215,16 +210,15 @@ This step will parse the GRUB configuration and identify the encrypted device an
 # mkinitcpio -p linux
 {% endhighlight %}
 
-One thing to look out for at this step is that if you use a non-US keyboard, you might want to add the `keymap` hook as well so that you can enter the passphrase in the layout you are familiar with.
-The `keymap` hook parses the `/etc/vconsole.conf` file to load the correct key map.
-I use the dvorak layout and my `/etc/vconsole.conf` file looks like this.
-
-{% highlight cfg %}
+> One thing to look out for at this step is that if you use a non-US keyboard, you might want to add the `keymap` hook as well so that you can enter the passphrase in the layout you are familiar with.
+> The `keymap` hook parses the `/etc/vconsole.conf` file to load the correct key map.
+> Based on this, it will load up the specified key map when prompting for a passphrase.
+> Keep in mind that this hook should be before the `encrypt` hook in the list.
+> I use the dvorak layout and my `/etc/vconsole.conf` file looks like this.
+>
+> {% highlight cfg %}
 KEYMAP=dvorak
 {% endhighlight %}
-
-The `keymap` hook now loads up the dvorak layout so I can enter the passphrase in that layout.
-Keep in mind that this hook should be before the `encrypt` hook in the list.
 
 Once you've rebuilt your initial ramdisk, continue with the default procedure and reboot your system.
 You should now be greeted by a passphrase request before the root device can be accessed.
