@@ -1,11 +1,3 @@
-body {
-    color: #000;
-    background-color: #ddf;
-    padding: 10px 25px;
-    border-radius: 25px;
-    font-family: serif;
-}
-
 a:link {
     color: #d60;
     text-decoration: none;
@@ -19,6 +11,21 @@ a:visited {
 a:hover {
     color: #f80;
     text-decoration: none;
+}
+
+blockquote {
+    background-color: #eee;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: small;
+}
+
+body {
+    color: #000;
+    background-color: #ddf;
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-family: serif;
 }
 
 h1 {
@@ -38,32 +45,39 @@ h3 {
     font-size: 16px;
 }
 
+pre {
+    counter-reset: line-numbering;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+pre a::before {
+    content: counter(line-numbering);
+    counter-increment: line-numbering;
+    width: 20px;
+    text-align: right;
+    display: inline-block;
+    color: #464;
+    font-style: italic;
+    padding: 2px 10px 0px 0px;
+
+    /* Avoid selecting line numbers */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
 tr:nth-child( even ) {
     background-color: #eef;
 }
 
-blockquote {
-    background-color: #eee;
-    padding: 5px;
-    border-radius: 25px;
-    font-size: small;
-}
-
-pre {
-    color: #464;
-    font-family: monospace;
-    white-space: pre-wrap;
-}
-
-.highlight {
-    color: #fff;
-    background-color: #221;
+.footnavbar {
+    display: block;
+    overflow: auto;
+    background-color: #fff;
     padding: 10px;
-    border-radius: 25px;
-}
-
-.highlight:hover {
-    background-color: #110;
+    border-radius: 10px;
+    text-align: center;
 }
 
 .header {
@@ -71,19 +85,19 @@ pre {
     overflow: auto;
 }
 
-#sitetitle {
-    color: #00a;
-    font-family: sans-serif;
-    font-size: 48px;
-    float: left;
+.highlight {
+    color: #fff;
+    background-color: #221;
+    padding: 10px;
+    border-radius: 10px;
 }
 
+.highlight:hover {
+    background-color: #110;
+}
 
-#about {
-    color: #008;
-    font-family: sans-serif;
-    font-size: 24px;
-    float: right;
+.metadata {
+    text-align: left
 }
 
 .navbar {
@@ -91,16 +105,8 @@ pre {
     overflow: auto;
     background-color: #fff;
     padding: 10px;
-    border-radius: 25px;
+    border-radius: 10px;
     text-align: center;
-}
-
-#prev {
-    float: left;
-}
-
-#next {
-    float: right;
 }
 
 .pagetitle {
@@ -110,26 +116,35 @@ pre {
     padding: 10px 0px;
 }
 
-.metadata {
-    text-align: left
-}
-
 .post {
     background-color: #fff;
     padding: 5% 10%;
-    border-radius: 25px;
+    border-radius: 10px;
 }
 
-.footnavbar {
-    display: block;
-    overflow: auto;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 25px;
-    text-align: center;
+#about {
+    color: #008;
+    font-family: sans-serif;
+    font-size: 24px;
+    float: right;
 }
 
 #home {
+    float: left;
+}
+
+#sitetitle {
+    color: #00a;
+    font-family: sans-serif;
+    font-size: 48px;
+    float: left;
+}
+
+#next {
+    float: right;
+}
+
+#prev {
     float: left;
 }
 

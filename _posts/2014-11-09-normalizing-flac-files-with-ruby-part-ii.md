@@ -18,7 +18,7 @@ This can just be a simple function that accepts a path and recurses through the 
 To avoid infinite loops and other messy affairs, we will not follow any symbolic links and stick to true directories.
 Such a function can be written like this,
 
-{% highlight ruby linenos %}
+{% highlight ruby lineanchors %}
 def processDir( dirPath )
     return if not File.directory?( dirPath )
 
@@ -42,7 +42,7 @@ And if the content is a file, we'll try to normalize it.
 
 First, we need to close the logic gap of potentially following unsafe symlinks.
 
-{% highlight ruby linenos %}
+{% highlight ruby lineanchors %}
 contentPath = dirPath + "/" + content
 next if File.symlink?( contentPath )
 {% endhighlight %}
@@ -50,7 +50,7 @@ next if File.symlink?( contentPath )
 Next, the `foreach` block ends up following the `.` and `..` directories as well, causing trouble.
 To fix that, we'll skip those.
 
-{% highlight ruby linenos %}
+{% highlight ruby lineanchors %}
 Dir.foreach( dirPath ) { |content|
     next if content == "." or content == ".."
 {% endhighlight %}
@@ -62,7 +62,7 @@ Typically, we expect a dozen FLAC files to be present in a directory, so this sh
 If this assumption is not true and you have a folder with dozens (or worse, hundreds) of FLAC files, this is potentially unsafe and will use a lot of resources.
 Here's the original block:
 
-{% highlight ruby linenos %}
+{% highlight ruby lineanchors %}
 Dir.foreach( dirPath ) { |content|
     next if content == "." or content == ".."
 
@@ -81,7 +81,7 @@ Dir.foreach( dirPath ) { |content|
 And here's how the forked version looks.
 Notice that we wait for all the forked processes to finish at each level before moving on.
 
-{% highlight ruby linenos %}
+{% highlight ruby lineanchors %}
 Dir.foreach( dirPath ) { |content|
     next if content == "." or content == ".."
 
@@ -114,7 +114,7 @@ This function must take a raw input parameter and figure out if it's a valid arg
 If the directory or file doesn't exist, the user must be told of that.
 I decided to not stop the script in that case, so the script will just print an error message for an incorrect path and move on to the other arguments.
 
-{% highlight ruby linenos %}
+{% highlight ruby lineanchors %}
 def process( input )
     if not File.exists?( input )
         puts "ERROR. #{input} not found."
@@ -137,7 +137,7 @@ end
 That works.
 Finally, the outer-most layer.
 
-{% highlight ruby linenos %}
+{% highlight ruby lineanchors %}
 require 'optparse'
 
 if __FILE__ == $0

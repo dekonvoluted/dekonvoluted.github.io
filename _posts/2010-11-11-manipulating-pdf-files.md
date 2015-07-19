@@ -44,7 +44,7 @@ A subset of the previous operation is to "explode" a PDF file into its pages.
 To do this page by page can get tiresome and that's usually an indication that the task is better suited to be written out as a script.
 Let's try writing a bash script to do this.
 
-{% highlight bash linenos %}
+{% highlight bash lineanchors %}
 #!/bin/bash
 
 # explode.sh
@@ -187,7 +187,7 @@ This is the sort of outline you will want to use for a research paper or a comic
 The next pdfmarks file has a more complicated outline consisting of nested sections such as the ones you would find in a thesis.
 Notice the syntax used to nest sections.
 
-{% highlight postscript linenos %}
+{% highlight postscript lineanchors %}
 % Some simple metadata
 [ /Title (My Thesis) /Author (Karthik Periagaram) /DOCINFO pdfmark
 

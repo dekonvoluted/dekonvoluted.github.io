@@ -58,7 +58,7 @@ The album on average sounds the same as the rest of the collection.
 
 Wrapping this in a simple script, called applyreplaygain.sh, I get
 
-{% highlight bash linenos %}
+{% highlight bash lineanchors %}
 #!/bin/bash
 mp3gain -p -a -k -s i -o "$1"/*.mp3
 {% endhighlight %}

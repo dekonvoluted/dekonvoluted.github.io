@@ -32,7 +32,7 @@ I couldn't figure out why this was happening.
 So, since the kioslave was not working perfectly, I decided to do this from the cli.
 Here is a simple script to rip flacs from a CD.
 
-{% highlight bash linenos %}
+{% highlight bash lineanchors %}
 #!/bin/bash
 
 TEMP=`mktemp -d`
