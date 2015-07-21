@@ -1,6 +1,6 @@
 ---
 title: Towards a secure system
-subtitle: Encrypting the file system
+subtitle: Part I - Encrypting the file system
 series: security
 layout: post
 categories: [ user guides ]
