@@ -21,9 +21,7 @@ It doesn't have to be super-accurate and rounding it to the nearest five degrees
 So, I'll use 45° N, 125° W, is approximately where Portland, OR is.
 Testing it out on the console with,
 
-{% highlight console %}
-$ redshift -l 45:-125
-{% endhighlight %}
+    $ redshift -l 45:-125
 
 reddened my desktop satisfactorily.
 
