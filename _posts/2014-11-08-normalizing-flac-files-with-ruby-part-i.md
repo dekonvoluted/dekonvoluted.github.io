@@ -31,7 +31,7 @@ Damn!
 I trawled the nets to see if I could find a FLAC file that had an intact ID3 tag.
 After wasting far too much time doing this, I found out that simulating this using the `id3tag` utility is dead-easy.
 
-    id3tag --v2tag --artist=TEST foo.flac
+    $ id3tag --v2tag --artist=TEST foo.flac
 
 That's it.
 `foo.flac` is now a FLAC file with an ID3v2 tag and `flac` will choke on it and trigger the re-encoding logic.
