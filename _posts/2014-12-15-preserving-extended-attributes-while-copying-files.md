@@ -38,13 +38,10 @@ For other metadata, applications are free to define and store additional types u
 Access to these attributes is provided by the `setfattr` and `getfattr` commands.
 You can get a list of all extended attributes associated with a file like this,
 
-{% highlight console %}
-$ getfattr --dump 1949\ -\ Late\ Spring.mkv
-# file: 1949 - Late Spring.mkv
-user.baloo.rating="6"
-user.xdg.tags="Drama Film,Japanese Film"
-
-{% endhighlight %}
+    $ getfattr --dump 1949\ -\ Late\ Spring.mkv
+    # file: 1949 - Late Spring.mkv
+    user.baloo.rating="6"
+    user.xdg.tags="Drama Film,Japanese Film"
 
 Notice how the dump option basically writes out the name (or relative path) of a file, followed by a bunch of name-value pairs?
 That's going to be useful later in this post.
@@ -58,10 +55,7 @@ Or, if you're on a KDE system, you can just mouse over the file in Dolphin and s
 The information panel is also where you would easily set these attributes.
 Or you can do so from the command line,
 
-{% highlight console %}
-$ setfattr --name="user.xdg.language" --value="ja" 1949\ -\ Late\ Spring.mkv
-{% endhighlight %}
-
+    $ setfattr --name="user.xdg.language" --value="ja" 1949\ -\ Late\ Spring.mkv
 
 # Preserving metadata
 
@@ -87,11 +81,9 @@ As expected, `mv` preserves extended attributes and just moves a file from the s
 Again, as expected, `cp` will start you off with a fresh copy with none of the older metadata preserved.
 However, you _can_ make a copy with the extended attributes preserved if you use the `-a/--archive` option.
 
-{% highlight console %}
-$ mv source/file-with-metadata destination/file-with-metadata
-$ cp source/file-with-metadata destination/file-without-metadata
-$ cp -a source/file-with-metadata destination/file-with-metadata
-{% endhighlight %}
+    $ mv source/file-with-metadata destination/file-with-metadata
+    $ cp source/file-with-metadata destination/file-without-metadata
+    $ cp -a source/file-with-metadata destination/file-with-metadata
 
 ## Using `rsync`
 
@@ -101,19 +93,16 @@ The `rsync` documentation states that the `--archive` option stands for `--recur
 That last one there is the option we want.
 So, if you want to preserve your metadata, do remember to include `-X/--xattrs` (note that the short form is a capital X) as one of the flags when calling `rsync`.
 
-{% highlight console %}
-$ rsync --archive source/file-with-metadata destination/file-without-metadata
-$ rsync --archive --xattrs source/file-with-metadata destination/file-with-metadata
-{% endhighlight %}
+    $ rsync --archive source/file-with-metadata destination/file-without-metadata
+    $ rsync --archive --xattrs source/file-with-metadata destination/file-with-metadata
 
 ## Using `scp`
 
 For one-off copy operations over a network, `scp` is extremely useful.
 Unfortunately, it doesn't support extended attributes and there is no option to preserve them as far as I know.
 
-{% highlight console %}
-$ scp source/file-with-metadata destination/file-without-metadata
-{% endhighlight %}
+    $ scp source/file-with-metadata destination/file-without-metadata
+
 (As a sidenote, the OS X version does have a `-E` option, but is OS-specific and won't work unless both source and destination are running OS X.)
 
 # Restoring metadata
@@ -128,27 +117,23 @@ Recall that `getfattr` using the dump option would give you a nice output contai
 You can dump the extended attributes of a single file, or even recursively get all the attributes of all files under the current directory.
 Note that directories are treated just like files as far as extended attributes go.
 
-{% highlight console %}
-$ getfattr --recursive --dump ./
-# file: file1
-user.xdg.comment="This file has a comment attached to it."
+    $ getfattr --recursive --dump ./
+    # file: file1
+    user.xdg.comment="This file has a comment attached to it."
 
-# file: dir1
-user.xdg.comment="Even directories can have extended attributes!"
+    # file: dir1
+    user.xdg.comment="Even directories can have extended attributes!"
 
-# file: dir1/file2
-user.baloo.rating="4"
+    # file: dir1/file2
+    user.baloo.rating="4"
 
-...
-{% endhighlight %}
+    ...
 
 Redirect this output into a file, say called metadata.txt.
 You may even create such a file manually (why not?!).
 All you need to do is to give this file to `setfattr` and set it to work.
 
-{% highlight console %}
-$ setfattr --restore=metadata.txt
-{% endhighlight %}
+    $ setfattr --restore=metadata.txt
 
 And the file attributes will be applied to the copies as `setfattr` finds each file by its relative path and applies the following attributes to it.
 This takes very little time as only the metadata is being written to the disk.
@@ -159,9 +144,7 @@ Note though that if you renamed a file or changed the (relative) path of a file,
 Ideally, `setfattr` would have an option to recursively delete all extended attributes of files passed to it as arguments.
 Unfortunately, that's not the case and `setfattr` will only delete one extended attribute at a time, when specified by the name of the attribute.
 
-{% highlight console %}
-$ setfattr --remove=user.xdg.comment file-with-metadata
-{% endhighlight %}
+    $ setfattr --remove=user.xdg.comment file-with-metadata
 
 This is somewhat limiting if you want to just wipe an entire directory of files clean of all metadata, but it's not too hard to write a script that will intelligently do this for you.
 
@@ -188,3 +171,4 @@ The more I think about this, the more it's starting to sound like something I'd 
 # Further reading
 
 Here's a [nice summary](http://www.lesbonscomptes.com/pages/extattrs.html) focussing on extended attributes support on other systems.
+
