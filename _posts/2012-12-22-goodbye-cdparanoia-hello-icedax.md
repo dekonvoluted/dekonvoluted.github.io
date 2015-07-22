@@ -58,16 +58,14 @@ Great.
 This worked pretty well, until I hit my <i>Wednesday Night, 3 AM</i> album.
 Now, `cdparanoia` simply refused to read from the CD, giving an output as shown below.
 
-{% highlight console %}
-cdparanoia III release 10.2 (September 11, 2008)
+    cdparanoia III release 10.2 (September 11, 2008)
 
-Ripping from sector       0 (track  1 [0:00.00])
-          to sector  182759 (track 15 [2:46.57])
+    Ripping from sector       0 (track  1 [0:00.00])
+            to sector  182759 (track 15 [2:46.57])
 
-outputting to track01.cdda.wav
+    outputting to track01.cdda.wav
 
- (== PROGRESS == [                  +++VV| 012679 00 ] == :^D * ==)
-{% endhighlight %}
+     (== PROGRESS == [                  +++VV| 012679 00 ] == :^D * ==)
 
 The progress bar shows several errors towards the end of the first track.
 Normally, this shouldn't be cause for too much undue concern, but for the following reasons.
