@@ -66,9 +66,7 @@ So, if you want it to speak something, you need to pass it with the `--tts` opti
 If you simply typed `festival` into a terminal and got stuck in its shell, type `(quit)` or press Ctrl+D to exit the festival shell.
  The first time you try it, you'll almost certainly get this error:
 
-{% highlight console %}
-Linux: can't open /dev/dsp
-{% endhighlight %}
+    Linux: can't open /dev/dsp
 
 This is because you use Pulseaudio.
 Don't worry, you can tell festival to use Pulseaudio by adding the following lines in your `~/.festivalrc` file (create one if it doesn't exist).
@@ -98,58 +96,55 @@ Run it in a terminal.
 
 Your session may look something like this.
 
-{% highlight console %}
+    $ spd-conf
+    Speech Dispatcher configuration tool
 
-$ spd-conf
-Speech Dispatcher configuration tool
+    Do you want to setup a completely new configuration? [yes] :
+    >
+    Do you want to create/setup a 'user' or 'system' configuration [user] :
+    >
+    User configuration already exists.
+    Do you want to rewrite it with a new one? [no] :
+    >yes
+    User configuration created in /home/karthikp/.speech-dispatcher/conf
+    Configuring user settings for Speech Dispatcher
+    Default output module [espeak] :
+    >
+    Default language (two-letter iso language code like "en" or "cs") [en] :
+    >
+    Default audio output method [pulse] :
+    >
+    Default speech rate (on the scale of -100..100, 0 is default, 50 is faster, -50 is slower) [0] :
+    >
+    Default speech pitch (on the scale of -100..100, 0 is default, 50 is higher, -50 is lower) [0] :
+    >
+    Do you want to have Speech Dispatcher automatically started from ~/.config/autostart ?
+    This is usually not necessary, most applications will start Speech Dispatcher automatically. [no] :
+    >
+    Do you want to start/restart Speech Dispatcher now and run some tests? [yes] :
+    >
+    Starting Speech Dispatcher in user-mode
+    [Sun Nov 25 14:49:11 2012 : 360348] speechd: Speech Dispatcher 0.7.1 starting
+    [Sun Nov 25 14:49:11 2012 : 360443] speechd: Speech Dispatcher already running.
 
-Do you want to setup a completely new configuration? [yes] :
->
-Do you want to create/setup a 'user' or 'system' configuration [user] :
->
-User configuration already exists.
-Do you want to rewrite it with a new one? [no] :
->yes
-User configuration created in /home/karthikp/.speech-dispatcher/conf
-Configuring user settings for Speech Dispatcher
-Default output module [espeak] :
->
-Default language (two-letter iso language code like "en" or "cs") [en] :
->
-Default audio output method [pulse] :
->
-Default speech rate (on the scale of -100..100, 0 is default, 50 is faster, -50 is slower) [0] :
->
-Default speech pitch (on the scale of -100..100, 0 is default, 50 is higher, -50 is lower) [0] :
->
-Do you want to have Speech Dispatcher automatically started from ~/.config/autostart ?
-This is usually not necessary, most applications will start Speech Dispatcher automatically. [no] :
->
-Do you want to start/restart Speech Dispatcher now and run some tests? [yes] :
->
-Starting Speech Dispatcher in user-mode
-[Sun Nov 25 14:49:11 2012 : 360348] speechd: Speech Dispatcher 0.7.1 starting
-[Sun Nov 25 14:49:11 2012 : 360443] speechd: Speech Dispatcher already running.
+    Speech Dispatcher already running.
 
-Speech Dispatcher already running.
-
-Can't start Speech Dispatcher. Exited with status 256
-Perhaps this is because your Speech Dispatcher is already running.
-Do you want to kill all running Speech Dispatchers and try again? [yes] :
->
-[Sun Nov 25 14:49:18 2012 : 862875] speechd: Speech Dispatcher 0.7.1 starting
-Testing Speech Dispatcher using spd_say
-Did you hear the message about Speech Dispatcher working? [yes] :
->
-Speech Dispatcher is installed and working!
-Speech Dispatcher works. Do you want to skip other tests? [yes] :
->
+    Can't start Speech Dispatcher. Exited with status 256
+    Perhaps this is because your Speech Dispatcher is already running.
+    Do you want to kill all running Speech Dispatchers and try again? [yes] :
+    >
+    [Sun Nov 25 14:49:18 2012 : 862875] speechd: Speech Dispatcher 0.7.1 starting
+    Testing Speech Dispatcher using spd_say
+    Did you hear the message about Speech Dispatcher working? [yes] :
+    >
+    Speech Dispatcher is installed and working!
+    Speech Dispatcher works. Do you want to skip other tests? [yes] :
+    >
 
 
-Diagnostics results:
-Speech Dispatcher is working
-End of diagnostics results
-{% endhighlight %}
+    Diagnostics results:
+    Speech Dispatcher is working
+    End of diagnostics results
 
 Notice that *most* of the time, the default answer is what you need, so you can simply press enter and continue.
 If the test was successful, you should have heard a voice say "Speech-Dispatcher is working".
@@ -224,9 +219,7 @@ Proceed to the Jobs tab.
 In the Jobs tab, we'll test Jovie.
 Select something you want Jovie to say like,
 
-{% highlight text %}
-Hello World! This is Jovie.
-{% endhighlight %}
+    Hello World! This is Jovie.
 
 and have it copied in your clipboard.
 Now, you can just click Speak Clipboard to have Jovie read it out.
