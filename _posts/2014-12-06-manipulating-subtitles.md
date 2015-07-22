@@ -21,10 +21,12 @@ The usual disclaimer about doing this only with media you own applies.
 
 A sample entry in this format looks like this,
 
-    23
-    00:01:23,234 -> 00:01:26,758
-    Your mother was a hamster
-    and your father smelt of elderberries!
+{% highlight text %}
+23
+00:01:23,234 -> 00:01:26,758
+Your mother was a hamster
+and your father smelt of elderberries!
+{% endhighlight %}
 
 The first line is the index of the subtitle, marking this as the 23rd block.
 The second line specifies the start time and the end time for this dialog to be shown on the screen.
@@ -50,10 +52,8 @@ To fix this, we need to convert the encoding to UTF-8.
 First, check the encoding of the file with the `file` command.
 If it returns `us-ascii` or `utf-8` you're okay.
 
-{% highlight console %}
-$ file --mime-encoding --brief subtitles.srt
-iso-8859-1
-{% endhighlight %}
+    $ file --mime-encoding --brief subtitles.srt
+    iso-8859-1
 
 Unfortunately, this one doesn't.
 So, we must use a utility like `iconv` to convert the encoding to UTF-8.
@@ -74,10 +74,8 @@ As usual, [Wikipedia](http://en.wikipedia.org/wiki/Newline) has a definitive wri
 
 Calling `file` on these files will quickly spot the problem for you.
 
-{% highlight console %}
-$ file subtitles.srt
-subtitles.srt: ASCII text, with CRLF line terminators
-{% endhighlight %}
+    $ file subtitles.srt
+    subtitles.srt: ASCII text, with CRLF line terminators
 
 Since I have errant `\r` (=CR) characters all over the place, I would use `tr` to truncate these characters.
 
