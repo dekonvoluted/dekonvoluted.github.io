@@ -52,13 +52,15 @@ You also need to have root privileges to edit system files.
 In the keyboard section of `/etc/X11/xorg.conf`, or in the appropriate .conf file in `/etc/X11/xorg.conf.d/`, add the XkbOptions line.
 If you use multiple options, separate them using commas.
 
-    Section "InputClass"
-        Identifier "Keyboard"
-        MatchIsKeyboard "yes"
-        ...
-        Option "XkbOptions" "...,compose:caps,..."
-        ...
-        EndSection
+{% highlight text %}
+Section "InputClass"
+    Identifier "Keyboard"
+    MatchIsKeyboard "yes"
+    ...
+    Option "XkbOptions" "...,compose:caps,..."
+    ...
+EndSection
+{% endhighlight %}
 
 Now, restart X to have your designated Compose key active.
 
@@ -87,7 +89,9 @@ As you can see, the syntax is quite easy to understand:
 
 For instance, to use \' + a to type á, the line will look like this:
 
-    <Multi_key> <apostrophe> <a> : "á" U00E1 # LATIN SMALL LETTER A WITH ACUTE
+{% highlight text %}
+<Multi_key> <apostrophe> <a> : "á" U00E1 # LATIN SMALL LETTER A WITH ACUTE
+{% endhighlight %}
 
 Compose key sequences are case-sensitive.
 So you can define another sequence to use \' + A to get Á.
@@ -97,14 +101,18 @@ Read the original Compose file for more such names.
 While defining your own sequences, be careful not to overload sequences or define two sequences in a way that you can't get to the second one.
 The computer will enter the first matching sequence, so if you define two sequences like this:
 
-    <Multi_key> <minus> <minus> : "–" U2013 # EN DASH
-    <Multi_key> <minus> <minus> <minus> : "—" U2014 # EM DASH
+{% highlight text %}
+<Multi_key> <minus> <minus> : "–" U2013 # EN DASH
+<Multi_key> <minus> <minus> <minus> : "—" U2014 # EM DASH
+{% endhighlight %}
 
 you will never be able to enter the EM DASH as by the time you hit the second minus, you'll drop out of Compose mode with an EN DASH.
 Incidentally, the default Compose file solves the above problem by using the following sequences:
 
-    <Multi_key> <minus> <minus> <period> : "–" U2013 # EN DASH
-    <Multi_key> <minus> <minus> <minus> : "—" U2014 # EM DASH
+{% highlight text %}
+<Multi_key> <minus> <minus> <period> : "–" U2013 # EN DASH
+<Multi_key> <minus> <minus> <minus> : "—" U2014 # EM DASH
+{% endhighlight %}
 
 I set out to organize my Compose file into two broad sections with subsections as follows:
 
@@ -125,20 +133,24 @@ I set out to organize my Compose file into two broad sections with subsections a
 Most of the compose key sequences in my file are the same as the original, but I invented some for new characters not in the original file.
 For instance, compose sequences for Greek letters start with a g, while some mathematical symbols sequences start with an m:
 
-    <Multi_key> <g> <a> : "α" U03B1 # GREEK SMALL LETTER ALPHA
-    <Multi_key> <g> <b> : "β" U03B2 # GREEK SMALL LETTER BETA
-    <Multi_key> <g> <g> : "γ" U03B3 # GREEK SMALL LETTER GAMMA
-    ...
-    <Multi_key> <m> <d> : "∂" U2202 # PARTIAL DIFFERENTIAL
-    <Multi_key> <m> <I> : "∫" U222B # INTEGRAL
-    <Multi_key> <m> <i> : "∞" U221E # INFINITY
+{% highlight text %}
+<Multi_key> <g> <a> : "α" U03B1 # GREEK SMALL LETTER ALPHA
+<Multi_key> <g> <b> : "β" U03B2 # GREEK SMALL LETTER BETA
+<Multi_key> <g> <g> : "γ" U03B3 # GREEK SMALL LETTER GAMMA
+...
+<Multi_key> <m> <d> : "∂" U2202 # PARTIAL DIFFERENTIAL
+<Multi_key> <m> <I> : "∫" U222B # INTEGRAL
+<Multi_key> <m> <i> : "∞" U221E # INFINITY
+{% endhighlight %}
 
 In other places, I changed the default sequences to type characters that were more important to my usage.
 For instance, in the original Compose file, < + < produces the left guillemet («).
 I find that the much less-than character (≪) is much more useful.
 So, I defined it like so:
 
-    <Multi_key> <less> <less> : "≪" U226A # MUCH LESS-THAN
+{% highlight text %}
+<Multi_key> <less> <less> : "≪" U226A # MUCH LESS-THAN
+{% endhighlight %}
 
 Finally, in the emoticons and miscellaneous section, I added some whimsical characters that struck my fancy: ☢ (r + a), ☣ (b + h), ☯ (y + y), ಠ (l + o + d)... while retaining some equally interesting characters from the original Compose file: ☭ (C + C + C + P), ♥ (< + 3), ☺ (: + ))...
 
