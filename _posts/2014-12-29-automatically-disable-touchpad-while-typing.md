@@ -30,9 +30,7 @@ Finally, you can decide how long you want to wait after the typing has ceased be
 The default wait is 2 seconds, but can be changed with the `-i` parameter.
 I recommend using it with the options, `-tdk`.
 
-{% highlight console %}
-$ syndaemon -tdk
-{% endhighlight %}
+    $ syndaemon -tdk
 
 Now, the next thing to do is to automatically have it launched for you when you log in.
 Putting it in `~/.bashrc` is a bad idea as this file is sourced even when you connect over `ssh`.
