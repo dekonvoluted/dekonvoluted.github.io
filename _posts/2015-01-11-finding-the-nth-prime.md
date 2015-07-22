@@ -10,10 +10,8 @@ Here's a puzzle that I played with a few years ago when I was learning python.
 The aim is to write a program that will accept one argument, `n`, and print out the nth prime.
 Something like,
 
-{% highlight console %}
-$ ./nthprime 1000
-7919
-{% endhighlight %}
+    $ ./nthprime 1000
+    7919
 
 Here's my solution from back then.
 Since 2 is tricky, let's initialize our list of primes with 2.
@@ -66,67 +64,57 @@ int main( int argc, char** argv )
 
 Let's compile this and check how long it takes to get to the millionth prime.
 
-{% highlight console %}
-$ g++ --std=c++11 -o nth-prime nth-prime.cpp
-$ time ./nth-prime 1000
-7919
+    $ g++ --std=c++11 -o nth-prime nth-prime.cpp
+    $ time ./nth-prime 1000
+    7919
 
-real    0m0.004s
-user    0m0.003s
-sys     0m0.000s
-{% endhighlight %}
+    real    0m0.004s
+    user    0m0.003s
+    sys     0m0.000s
 
 Okay, to get to a thousand primes, it just took 4 ms.
 
-{% highlight console %}
-$ time ./nth-prime 100000
-1299709
+    $ time ./nth-prime 100000
+    1299709
 
-real    0m0.799s
-user    0m0.797s
-sys     0m0.000s
-{% endhighlight %}
+    real    0m0.799s
+    user    0m0.797s
+    sys     0m0.000s
 
 Hmm.
 It gets to a hundred thousand prime numbers in 0.8 seconds.
 
-{% highlight console %}
-$ time ./nth-prime 1000000
-15485863
+    $ time ./nth-prime 1000000
+    15485863
 
-real    0m21.242s
-user    0m21.240s
-sys     0m0.003s
-{% endhighlight %}
+    real    0m21.242s
+    user    0m21.240s
+    sys     0m0.003s
 
 What?!
 A million primes takes twenty seconds?!
 Unacceptable.
 Let's compile with optimization to see if that makes a difference.
 
-{% highlight console %}
-$ g++ --std=c++11 -O1 -o nth-prime nth-prime.cpp
-$ time ./nth-prime 1000000
-15485863
+    $ g++ --std=c++11 -O1 -o nth-prime nth-prime.cpp
+    $ time ./nth-prime 1000000
+    15485863
 
-real    0m2.230s
-user    0m2.227s
-sys     0m0.003s
-{% endhighlight %}
+    real    0m2.230s
+    user    0m2.227s
+    sys     0m0.003s
 
 Whoa!
 Using -O1 cuts this down to just over two seconds to find the millionth prime number.
 I wonder if -O2 or -O3 would do even better...
 
-{% highlight console %}
-$ g++ --std=c++11 -O2 -o nth-prime nth-prime.cpp
-$ time ./nth-prime 1000000
-15485863
+    $ g++ --std=c++11 -O2 -o nth-prime nth-prime.cpp
+    $ time ./nth-prime 1000000
+    15485863
 
-real    0m2.239s
-user    0m2.237s
-sys     0m0.000s
-{% endhighlight %}
+    real    0m2.239s
+    user    0m2.237s
+    sys     0m0.000s
 
 Yeah, no that's about as far as we can ride this pony.
 Now, let's try to see if the code could be optimized further.
@@ -170,47 +158,41 @@ index 6f5113e..a6722e4 100644
 
 Okay, time to test this.
 
-{% highlight console %}
-$ g++ --std=c++11 -O1 -o nth-prime nth-prime.cpp
-$ time ./nth-prime 1000000
-15485863
+    $ g++ --std=c++11 -O1 -o nth-prime nth-prime.cpp
+    $ time ./nth-prime 1000000
+    15485863
 
-real    0m2.245s
-user    0m2.243s
-sys     0m0.000s
-{% endhighlight %}
+    real    0m2.245s
+    user    0m2.243s
+    sys     0m0.000s
 
 Wait, we got *slower*?
 
-{% highlight console  %}
-$ time ./nth-prime 1000000
-15485863
+    $ time ./nth-prime 1000000
+    15485863
 
-real    0m2.246s
-user    0m2.240s
-sys     0m0.003s
-{% endhighlight %}
+    real    0m2.246s
+    user    0m2.240s
+    sys     0m0.003s
 
 Yup.
 We definitely got a tad bit slower, presumably from having to store and retrieve the squares of all the primes found so far.
 Could higher optimization levels help us now?
 
-{% highlight console %}
-$ g++ --std=c++11 -O2 -o nth-prime nth-prime.cpp
-$ time ./nth-prime 1000000
-15485863
+    $ g++ --std=c++11 -O2 -o nth-prime nth-prime.cpp
+    $ time ./nth-prime 1000000
+    15485863
 
-real    0m2.224s
-user    0m2.217s
-sys     0m0.007s
-$ g++ --std=c++11 -O3 -o nth-prime nth-prime.cpp
-$ time ./nth-prime 1000000
-15485863
+    real    0m2.224s
+    user    0m2.217s
+    sys     0m0.007s
+    $ g++ --std=c++11 -O3 -o nth-prime nth-prime.cpp
+    $ time ./nth-prime 1000000
+    15485863
 
-real    0m2.222s
-user    0m2.217s
-sys     0m0.003s
-{% endhighlight %}
+    real    0m2.222s
+    user    0m2.217s
+    sys     0m0.003s
 
 So, caching the squares managed to save us about 10 ms at the end of the day.
 What if we reserve space for the vectors ahead of time, since we already know that we're out to find the first `n` primes?
@@ -234,15 +216,13 @@ index a6722e4..236d84d 100644
 
 Yeah, let's try that.
 
-{% highlight console %}
-$ g++ --std=c++11 -O2 -o nth-prime nth-prime.cpp
-$ time ./nth-prime 1000000
-15485863
+    $ g++ --std=c++11 -O2 -o nth-prime nth-prime.cpp
+    $ time ./nth-prime 1000000
+    15485863
 
-real    0m2.216s
-user    0m2.213s
-sys     0m0.000s
-{% endhighlight %}
+    real    0m2.216s
+    user    0m2.213s
+    sys     0m0.000s
 
 That shaved off another 10 ms, but I'm starting to run out of ideas and it looks like that's as far as this goes with C++.
 Still, 2.2 seconds to the millionth prime isn't too shabby.
@@ -251,15 +231,13 @@ Let's try implementing the same algorithm in python.
 Now, python is interpreted and that puts it at a disadvantage, particularly since we asked the compiler to optimize the code.
 Let's run this without any compiler optimization.
 
-{% highlight console %}
-$ g++ --std=c++11 -o nth-prime nth-prime.cpp
-$ time ./nth-prime 1000000
-15485863
+    $ g++ --std=c++11 -o nth-prime nth-prime.cpp
+    $ time ./nth-prime 1000000
+    15485863
 
-real    0m14.152s
-user    0m14.143s
-sys     0m0.007s
-{% endhighlight %}
+    real    0m14.152s
+    user    0m14.143s
+    sys     0m0.007s
 
 Okay, so it takes about 14 seconds to hit the millionth prime.
 Now, let's use all the tricks we learned so far to get python off to a speedy start.
@@ -311,15 +289,13 @@ print( nth_prime( int( sys.argv[ 1 ] ) ) )
 Okay, we only test odd numbers, cache all the previous primes and their squares and only test divisibility with primes smaller than the square root of a number.
 Let's see how fast this runs.
 
-{% highlight console %}
-$ chmod +x ./nth-prime.py
-$ time ./nth-prime.py 1000000
-15485863
+    $ chmod +x ./nth-prime.py
+    $ time ./nth-prime.py 1000000
+    15485863
 
-real    2m53.168s
-user    2m52.970s
-sys     0m0.150s
-{% endhighlight %}
+    real    2m53.168s
+    user    2m52.970s
+    sys     0m0.150s
 
 Oh wow.
 The same implementation in python runs about ten times slower than the *slowest* it ran in C++ (without compiler optimizations).
