@@ -105,9 +105,7 @@ We still want to create the partitions on the disk, but we don't want to format 
 The user interface to encrypting/decrypting a partition/volume is provided by the `cryptsetup` command.
 Let's say the raw partition is called `/dev/sda3` and we would like it to be an encrypted volume.
 
-{% highlight console %}
-# cryptsetup luksFormat /dev/sda3
-{% endhighlight %}
+    # cryptsetup luksFormat /dev/sda3
 
 Used like this with no options, this will use a symmetric, 256-bit AES cipher to encrypt the data on this volume.
 The default also uses something called the XTS mode, which effectively halves the key length.
@@ -135,17 +133,13 @@ For the purposes of this post, I'm going to go with something generic like, `my-
 For instance, if the device is the root partition, pick `root` or the hostname of the system itself.
 This device name is just the name of the mount point and will not be remembered by the volume, but having a sensible name will help when referring to it in commands and logs.
 
-{% highlight console %}
-# cryptsetup luksOpen /dev/sda3 my-decrypted-device
-{% endhighlight %}
+    # cryptsetup luksOpen /dev/sda3 my-decrypted-device
 
 This command will ask for a passphrase to use to decrypt the device.
 The encrypted partition `/dev/sda3` is now available as a regular, seemingly unencrypted volume at `/dev/mapper/my-decrypted-device`.
 We can use this decrypted volume to create a file system and write data to it.
 
-{% highlight console %}
-# mkfs.ext4 -L root /dev/mapper/my-decrypted-device
-{% endhighlight %}
+    # mkfs.ext4 -L root /dev/mapper/my-decrypted-device
 
 You can similarly proceed with the rest of the installation procedure using `/dev/mapper/my-decrypted-device` whenever you need to refer to `/dev/sda3`.
 
@@ -161,15 +155,11 @@ Deviate away from the procedure when configuring GRUB.
 GRUB needs to know that the root device it's looking for ('/dev/mapper/my-decrypted-device`) is actually an unlocked encrypted device.
 Now would be a good time to notice that the encrypted volume `/dev/sda3` and the decrypted volume `/dev/mapper/my-decrypted-device` while being the same volume, actually have different UUIDs.
 
-{% highlight console %}
-# blkid -f
-{% endhighlight %}
+    # blkid -f
 
 or
 
-{% highlight console %}
-# ls -l /dev/disk/by-uuid/
-{% endhighlight %}
+    $ ls -l /dev/disk/by-uuid/
 
 The default generated /boot/grub/grub.cfg would contain a line to specify where the root file system is and it would look something like this,
 
@@ -190,9 +180,7 @@ Make the following edit in `/etc/default/grub`.
 
 And regenerate the GRUB configuration file.
 
-{% highlight console %}
-# grub-mkconfig -o /boot/grub/grub.cfg
-{% endhighlight %}
+    # grub-mkconfig -o /boot/grub/grub.cfg
 
 Now that GRUB is ready, we need to regenerate the initramfs image to include the encrypt hook.
 This hook is needed to decrypt the encrypted volume during boot up.
@@ -206,9 +194,7 @@ Edit the `/etc/mkinitcpio.conf` file and add the `encrypt' hook before the `file
 Now, rebuild the initramfs image.
 This step will parse the GRUB configuration and identify the encrypted device and where it should be decrypted under `/dev/mapper`.
 
-{% highlight console %}
-# mkinitcpio -p linux
-{% endhighlight %}
+    # mkinitcpio -p linux
 
 > One thing to look out for at this step is that if you use a non-US keyboard, you might want to add the `keymap` hook as well so that you can enter the passphrase in the layout you are familiar with.
 > The `keymap` hook parses the `/etc/vconsole.conf` file to load the correct key map.
@@ -235,9 +221,7 @@ Right now, our /dev/sda3 encrypted volume uses just a single passphrase.
 So there are seven remaining slots for other ways to decrypt the device.
 Let's add a new slot for a key file.
 
-{% highlight console %}
-# cryptsetup luksAddKey /dev/sda3 /path/to/keyfile
-{% endhighlight %}
+    # cryptsetup luksAddKey /dev/sda3 /path/to/keyfile
 
 This will prompt for your passphrase and will then add a new slot for the key file.
 Now, we need to tell GRUB to find the key file.
@@ -316,35 +300,25 @@ For my use case, I opted to go with a simple swap file inside the root file syst
 If you want to read an encrypted volume from another machine, you need to open/decrypt it, mount the decrypted volume and then access the files.
 First, make sure you have the `dm-crypt` module loaded up.
 
-{% highlight console %}
-# modprobe dm_crypt
-{% endhighlight %}
+    # modprobe dm_crypt
 
 Next, open the device and specify the device name where the decrypted device will become available.
 
-{% highlight console %}
-# cryptsetup luksOpen /dev/sda3 my-decrypted-device
-{% endhighlight %}
+    # cryptsetup luksOpen /dev/sda3 my-decrypted-device
 
 You'll need to provide one of the passphrases for this device.
 If you have a key file available, you could use that as well.
 
-{% highlight console %}
-# cryptsetup --key-file /path/to/keyfile luksOpen /dev/sda3 my-decrypted-device
-{% endhighlight %}
+    # cryptsetup --key-file /path/to/keyfile luksOpen /dev/sda3 my-decrypted-device
 
 Now, mount the newly available decrypted device at a mount point of your choosing and access the files.
 
-{% highlight console %}
-# mount /dev/mapper/my-decrypted-device /mnt/
-{% endhighlight %}
+    # mount /dev/mapper/my-decrypted-device /mnt/
 
 When done, umount the decrypted device, close it and then disconnect.
 
-{% highlight console %}
-# umount /mnt/
-# cryptsetup luksClose my-decrypted-device
-{% endhighlight %}
+    # umount /mnt/
+    # cryptsetup luksClose my-decrypted-device
 
 I hope this has answered many of the questions you might have when setting out to research using encrypted file systems.
 
