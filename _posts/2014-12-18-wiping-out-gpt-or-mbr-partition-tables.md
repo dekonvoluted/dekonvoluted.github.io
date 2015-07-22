@@ -21,12 +21,10 @@ In this example, I'm going to assume that the disk is `/dev/sdb`.
 
 Now, just zap all partition tables using the `sgdisk` command from the `gptfdisk` package.
 
-{% highlight console %}
-# sgdisk --zap-all /dev/sdb
-GPT data structures destroyed! You may now partition the disk using fdisk or
-other utilities.
-The operation has completed successfully.
-{% endhighlight %}
+    # sgdisk --zap-all /dev/sdb
+    GPT data structures destroyed! You may now partition the disk using fdisk or
+    other utilities.
+    The operation has completed successfully.
 
 # Further reading
 
