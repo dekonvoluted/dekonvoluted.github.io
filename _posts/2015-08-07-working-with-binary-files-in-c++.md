@@ -17,7 +17,7 @@ I worked with these files as a grad student, so I'm familiar with them.
 According to the SPE format, the file begins with a 4200-byte header which stores lots of information about the settings used to capture the image, followed by the raw data that comprises the image frames.
 For this post, I'll work with the the attribute for the number of columns present in the image.
 This value is stored as a two-byte unsigned short integer forty-two bytes from the start of the file.
-We can see this structure by using a hex editor or viewer like `xxd`.
+We can see this structure by using a hex editor (I recommend Okteta) or a viewer like `xxd`.
 
 {% highlight console %}
 $ xxd image.spe
@@ -28,9 +28,10 @@ $ xxd image.spe
 ...
 {% endhighlight %}
 
-The number of columns, at byte 42 (=0x2A) is on the third line and reads `0002`.
-This is little-endian for 0200 (octal), which is 512 in decimal.
-Let's look at the different ways to read this value.
+The number of columns, at byte 42 (=0x2A, in hexadecimal) is on the third line and reads `0002`.
+This is little-endian for `0200` (=0x200, in hexadecimal), which is 512 in decimal.
+This image has 512 columns (which is true as this camera had a 512x512 sensor).
+Now, let's look at the different ways to go about extracting this value with C++.
 
 {% highlight cpp lineanchors %}
 #include <fstream>
@@ -53,7 +54,7 @@ int main()
 }
 {% endhighlight %}
 
-This is the simplest C-compatible implementation.
+This is the simplest implementation
 The file is opened for reading in the binary mode.
 The file pointer is told to seek the 42nd byte, where it proceeds to read in two bytes (which is the size of an unsigned short) of data.
 This is stored in the memory location where `cols` resides, which is presented to the `read` command as if it were a pointer to characters.
