@@ -14,7 +14,7 @@ To serve as an example, let's consider a binary file in a format called SPE.
 This format is used by Princeton Instruments cameras to record images and spectra.
 I worked with these files as a grad student, so I'm familiar with them.
 
-According to the SPE format, the file begins with a 4200-byte header which stores lots of information about the settings used to capture the image, followed by the raw data that comprises the image frames.
+According to the SPE format, the file begins with a 4100-byte header which stores lots of information about the settings used to capture the image, followed by the raw data that comprises the image frames.
 For this post, I'll work with the the attribute for the number of columns present in the image.
 This value is stored as a two-byte unsigned short integer forty-two bytes from the start of the file.
 We can see this structure by using a hex editor (I recommend Okteta) or a viewer like `xxd`.
@@ -62,7 +62,7 @@ When executed, this will print out 512.
 
 This approach is great if you want to read one value at a time.
 However, you might want to read in larger blocks of data at once to minimize the number of read operations.
-For instance, let's say we would like to read in the entire 4200 byte header in at once and then extract the metadata present in it at our convenience.
+For instance, let's say we would like to read in the entire 4100 byte header in at once and then extract the metadata present in it at our convenience.
 Working with the same principle, one might write the following code.
 
 {% highlight cpp lineanchors %}
@@ -71,12 +71,12 @@ Working with the same principle, one might write the following code.
 
 int main()
 {
-    char header[ 4200 ];
+    char header[ 4100 ];
 
     // Extract the entire header
     std::ifstream inFile;
     inFile.open( "image.spe", std::ios::in | std::ios::binary );
-    inFile.read( header, 4200 );
+    inFile.read( header, 4100 );
     inFile.close();
 
     // Extract the number of columns at 0x2A
@@ -91,7 +91,7 @@ int main()
 }
 {% endhighlight %}
 
-Now, we simply read 4200 bytes straight into a char array (with no need to `reinterpret_cast`) and slice the array to get two bytes at an offset of 42.
+Now, we simply read 4100 bytes straight into a char array (with no need to `reinterpret_cast`) and slice the array to get two bytes at an offset of 42.
 These two bytes are cast as an unsigned short and we have the number of columns.
 This code will work just fine, but when compiling, it will print this warning,
 
@@ -112,12 +112,12 @@ The legal way in C to have the same location accessible to two different data ty
 
 int main()
 {
-    char header[ 4200 ];
+    char header[ 4100 ];
 
     // Extract the entire header
     std::ifstream inFile;
     inFile.open( "image.spe", std::ios::in | std::ios::binary );
-    inFile.read( header, 4200 );
+    inFile.read( header, 4100 );
     inFile.close();
 
     // Extract the number of columns at 0x2A
@@ -148,12 +148,12 @@ Let's start with using a string instead of an array of characters.
 
 int main()
 {
-    std::string header( 4200, 0 );
+    std::string header( 4100, 0 );
 
     // Extract the entire header
     std::ifstream inFile;
     inFile.open( "image.spe", std::ios::in | std::ios::binary );
-    inFile.read( &header[ 0 ], 4200 );
+    inFile.read( &header[ 0 ], 4100 );
     inFile.close();
 
     // Extract the number of columns at 0x2A
@@ -183,12 +183,12 @@ So, let's use a container that does guarantee this operation is always safe, `ve
 
 int main()
 {
-    std::vector<char> header( 4200, 0 );
+    std::vector<char> header( 4100, 0 );
 
     // Extract the entire header
     std::ifstream inFile;
     inFile.open( "image.spe", std::ios::in | std::ios::binary );
-    inFile.read( header.data(), 4200 );
+    inFile.read( header.data(), 4100 );
     inFile.close();
 
     // Extract the number of columns at 0x2A
