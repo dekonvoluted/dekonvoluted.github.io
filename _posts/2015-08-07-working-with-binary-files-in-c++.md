@@ -203,7 +203,7 @@ int main()
 {% endhighlight %}
 
 This addresses our concern about a possible segmentation fault and retrieves binary data correctly from the file header.
-One last rewrite to make this code easy to read.
+One last rewrite to make this code easier to read in the future.
 
 {% highlight cpp lineanchors %}
 #include <fstream>
@@ -228,6 +228,50 @@ int main()
     unsigned short cols;
     const std::size_t OFFSET_COLS = header.begin() + 0x2A;
     const std::size_t LENGTH_COLS = sizeof( cols );
+
+    std::string slice( OFFSET_COLS, OFFSET_COLS + LENGTH_COLS );
+    std::stringstream( slice ).read( reinterpret_cast<char*>( &cols ), LENGTH_COLS );
+
+    std::cout << "Number of columns: " << cols << std::endl;
+
+    return 0;
+}
+{% endhighlight %}
+
+The code now explains what the hard-coded numbers like 4100 and 42 are.
+Lengths are typically easier to understand in decimal, but offsets are usually shown in hexadecimal by hex viewers.
+So, it's simpler to use `0x2A` instead of `42`.
+One last change is the use of the appropriate datatype `std::size_t` to store these values.
+`size_t` is an unsigned integer type that is guaranteed to hold the size/index of any array.
+`std::size_t` is the C++-friendly version of that.
+
+Now, there's one last thing we can do to make this code a little more robust and that's to ensure that the `cols` variable is always exactly 16 bits long.
+For that, we should use `std::uint16_t` instead of `unsigned short`.
+
+{% highlight cpp lineanchors %}
+#include <fstream>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <cstddef>
+#include <cstdint>
+
+int main()
+{
+    const std::size_t HEADER_LENGTH = 4100;
+    std::vector<char> header( HEADER_LENGTH, 0 );
+
+    // Extract the entire header
+    std::ifstream inFile;
+    inFile.open( "image.spe", std::ios::in | std::ios::binary );
+    inFile.read( header.data(), HEADER_LENGTH );
+    inFile.close();
+
+    // Extract the number of columns (unsigned short) at offset 42 (0x2A)
+    std::uint16_t cols;
+    const std::size_t OFFSET_COLS = header.begin() + 0x2A;
+    const std::size_t LENGTH_COLS = 2;
 
     std::string slice( OFFSET_COLS, OFFSET_COLS + LENGTH_COLS );
     std::stringstream( slice ).read( reinterpret_cast<char*>( &cols ), LENGTH_COLS );
