@@ -203,5 +203,40 @@ int main()
 {% endhighlight %}
 
 This addresses our concern about a possible segmentation fault and retrieves binary data correctly from the file header.
+One last rewrite to make this code easy to read.
+
+{% highlight cpp lineanchors %}
+#include <fstream>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <cstddef>
+
+int main()
+{
+    const std::size_t HEADER_LENGTH = 4100;
+    std::vector<char> header( HEADER_LENGTH, 0 );
+
+    // Extract the entire header
+    std::ifstream inFile;
+    inFile.open( "image.spe", std::ios::in | std::ios::binary );
+    inFile.read( header.data(), HEADER_LENGTH );
+    inFile.close();
+
+    // Extract the number of columns (unsigned short) at offset 42 (0x2A)
+    unsigned short cols;
+    const std::size_t OFFSET_COLS = header.begin() + 0x2A;
+    const std::size_t LENGTH_COLS = sizeof( cols );
+
+    std::string slice( OFFSET_COLS, OFFSET_COLS + LENGTH_COLS );
+    std::stringstream( slice ).read( reinterpret_cast<char*>( &cols ), LENGTH_COLS );
+
+    std::cout << "Number of columns: " << cols << std::endl;
+
+    return 0;
+}
+{% endhighlight %}
+
 We can now use this basic approach to read data from any point in the binary file and interpret it according to the spec for the format.
 
