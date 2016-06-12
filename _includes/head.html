@@ -7,6 +7,7 @@
             {{ page.title }} - {{ site.title }}
         {% endif %}
     </title>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
     <link rel="stylesheet" type="text/css" href="/css/syntax.css">
     <link rel="stylesheet" type="text/css" href="/css/default.css">
 </head>
