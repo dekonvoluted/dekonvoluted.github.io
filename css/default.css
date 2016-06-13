@@ -127,6 +127,15 @@ tr:nth-child( even ) {
     font-family: sans-serif;
     font-size: 24px;
     float: right;
+    margin: 10px;
+}
+
+#archive {
+    color: #008;
+    font-family: sans-serif;
+    font-size: 24px;
+    float: right;
+    margin: 10px;
 }
 
 #home {

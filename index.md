@@ -3,9 +3,23 @@ title: Home
 layout: page
 ---
 
-# Blog posts
+# Latest post
 
-{% for post in site.posts %}{% if post.subtitle %}
-* {{ post.date | date: "%Y-%m-%d" }}: [{{ post.title }} - {{ post.subtitle }}]({{ post.url }}) {% else %}
-* {{ post.date | date: "%Y-%m-%d" }}: [{{ post.title }}]({{ post.url }}) {% endif %}{% endfor %}
+---
+
+## [{{ site.posts.first.title }}]( {{ site.posts.first.url }} )
+
+Published on {{ site.posts.first.date | date: "%Y-%m-%d" }}, tagged as {{ site.posts.first.tags | join: ', ' }}
+
+# Recent posts
+
+---
+
+{% for post in site.posts limit: 5 %}
+
+### [{{ post.previous.title }}]( {{ post.previous.url }} )
+
+Published on {{ post.previous.date | date: "%Y-%m-%d" }}, tagged as {{ post.previous.tags | join: ', ' }}
+
+{% endfor %}
 
