@@ -1,6 +1,7 @@
 ---
 title: Archive
 layout: page
+permalink: /archive/
 ---
 
 # Previous posts
