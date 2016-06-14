@@ -9,7 +9,7 @@ layout: page
 
 ## [{{ site.posts.first.title }}]( {{ site.posts.first.url }} )
 
-Published on {{ site.posts.first.date | date: "%Y-%m-%d" }}, tagged as {{ site.posts.first.tags | join: ', ' }}
+Published on {{ site.posts.first.date | date: "%Y-%m-%d" }}, tagged {% for tag in site.posts.first.tags %} [ {{ tag }} ]( tags/{{ tag | downcase }} ) {% unless forloop.last %} , {% endunless %} {% endfor %}
 
 # Recent posts
 
@@ -19,7 +19,7 @@ Published on {{ site.posts.first.date | date: "%Y-%m-%d" }}, tagged as {{ site.p
 
 ### [{{ post.previous.title }}]( {{ post.previous.url }} )
 
-Published on {{ post.previous.date | date: "%Y-%m-%d" }}, tagged as {{ post.previous.tags | join: ', ' }}
+Published on {{ post.previous.date | date: "%Y-%m-%d" }}, tagged {% for tag in post.previous.tags %} [ {{ tag }} ]( tags/{{ tag | downcase }} ) {% unless forloop.last %} , {% endunless %} {% endfor %}
 
 {% endfor %}
 

@@ -20,7 +20,7 @@
     <a href="{{ page.url }}"><div class="pagetitle">{{ page.title }}<br>{{ page.subtitle }}</div></a>
 
     <div class="metadata">
-        <small><i>Categories</i>: {{ page.categories | array_to_sentence_string }}, <i>Tags</i>: {{ page.tags | array_to_sentence_string }}, <i>Published on</i>: {{ page.date | date: "%Y-%m-%d" }}</small>
+        <small><i>Categories</i>: {{ page.categories | array_to_sentence_string }}, <i>Tags</i>: {% for tag in page.tags %} <a href="{{ site.url }}/tags/{{ tag | downcase }}">{{ tag }}</a> , {% endfor %} <i>Published on</i>: {{ page.date | date: "%Y-%m-%d" }}</small>
     </div>
 </div>
 
