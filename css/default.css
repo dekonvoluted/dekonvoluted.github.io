@@ -129,7 +129,15 @@ tr:nth-child( even ) {
     margin: 10px;
 }
 
-#archive {
+#categories {
+    color: #008;
+    font-family: sans-serif;
+    font-size: 24px;
+    float: right;
+    margin: 10px;
+}
+
+#projects {
     color: #008;
     font-family: sans-serif;
     font-size: 24px;
