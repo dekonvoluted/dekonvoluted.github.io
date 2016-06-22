@@ -23,5 +23,7 @@ Published on {{ post.previous.date | date: "%Y-%m-%d" }}, tagged {% for tag in p
 
 {% endfor %}
 
+---
+
 # [Archived posts]({{ site.url }}/archive/)
 
