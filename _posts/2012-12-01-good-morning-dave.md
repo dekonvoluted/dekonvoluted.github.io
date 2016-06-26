@@ -2,7 +2,7 @@
 title: Good morning, Dave.
 layout: post
 categories: [ user guides ]
-tags: [ espeak, festival, jovie, speech-dispatcher ]
+tags: [ kde, espeak, festival, jovie, speech-dispatcher ]
 comments: true
 ---
 

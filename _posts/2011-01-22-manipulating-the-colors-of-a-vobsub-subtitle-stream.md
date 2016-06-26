@@ -2,7 +2,7 @@
 title: Manipulating the colors of a VobSub subtitle stream
 layout: post
 categories: [ user guides ]
-tags: [ vobsub, mplayer ]
+tags: [ vobsub, subtitles, mplayer ]
 comments: true
 ---
 

@@ -3,7 +3,7 @@ title: Project KDE
 subtitle: 2013 progress
 layout: post
 categories: [ project KDE ]
-tags: [ kde ]
+tags: [ Qt, C++, cmake, git ]
 comments: true
 ---
 

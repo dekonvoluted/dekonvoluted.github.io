@@ -1,7 +1,7 @@
 ---
 title: Working with binary files in C++
 layout: post
-categories: [ C++ ]
+categories: [ user guides ]
 tags: [ C++, binary ]
 comments: true
 ---

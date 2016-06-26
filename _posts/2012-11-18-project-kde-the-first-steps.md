@@ -3,7 +3,7 @@ title: Project KDE
 subtitle: The first steps
 layout: post
 categories: [ project KDE ]
-tags: [ kde ]
+tags: [ Qt, C++, cmake, git ]
 comments: true
 ---
 
