@@ -270,4 +270,5 @@ Here's the liquid implementation.
 
 Now, the tag cloud adapts to the relative frequency of tags used in the blog and not to the total number of posts (which has, and should have no effect).
 The most frequent tag will always be at max size (unless it's only used once) and the least frequent tag will always be at the minimum size.
+Check it out [here]({{ site.url }}/tags).
 
