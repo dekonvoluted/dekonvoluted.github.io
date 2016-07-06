@@ -9,14 +9,14 @@ permalink: /projects/
 A C++ library to work with SPE files
 
 This project was started in 2009 when I needed a way to import data from SPE files into C++ code.
-It uses the Eigen linear algebra library to abstract image frames as matrices.
+It uses the [Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) linear algebra library to abstract image frames as matrices.
 The latest release was in 2015.
 
 # Equilibrium
 
 A Qt application to calculate gaseous equilibrium
 
-Equilibrium was envisioned in 2011 as a successor to GasEQ, a Windows-only gas equilibrium calculator.
+Equilibrium was envisioned in 2011 as a successor to [GasEQ](http://www.gaseq.co.uk/), a Windows-only gas equilibrium calculator.
 After a burst of activity that managed to transcribe most of the GasEQ equations in LaTeX, the project lost momentum.
 The project has been in cold storage for several years now.
 
