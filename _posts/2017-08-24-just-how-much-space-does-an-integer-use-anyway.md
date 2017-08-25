@@ -11,9 +11,9 @@ You'd probably say four bytes.
 That's probably what `sizeof (int)` returns on your machine.
 And you'd be right.
 
-Most machines today are 64-bit systems and use the LP64 [data model](http://en.cppreference.com/w/cpp/language/types#Data_models) (long == void* == 64 bits or 8 bytes).
-If you have an older 32-bit system lying around, it would use the ILP32 data model (int == long == void* == 32 bits or 4 bytes).
-In both cases, int uses 4 bytes.
+Most machines today are 64-bit systems and use the LP64 [data model](http://en.cppreference.com/w/cpp/language/types#Data_models) (`long` == `void*` == 64 bits or 8 bytes).
+If you have an older 32-bit system lying around, it would use the ILP32 data model (`int` == `long` == `void*` == 32 bits or 4 bytes).
+In both cases, `int` uses 4 bytes.
 You can check which data model your system uses by running this program,
 {% highlight cpp linenos %}
 #include <iostream>
@@ -23,7 +23,9 @@ int main()
     // Print out the data model used
     // ILP32: 4/4/4
     // LP64: 4/8/8
-    std::cout << "Data model: " << sizeof ( int ) << '/' << sizeof ( long ) << '/' << sizeof ( void* ) << '\n'
+    std::cout << "Data model: " << sizeof ( int ) << '/'
+                                << sizeof ( long ) << '/'
+                                << sizeof ( void* ) << '\n';
 }
 {% endhighlight %}
 
