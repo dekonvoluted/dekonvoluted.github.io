@@ -32,7 +32,7 @@ I expect the sequence of operations to look like this,
 
 To make this magic happen, here's a simplified version of the code I was relying on.
 
-{% highlight ruby lineanchors %}
+{% highlight ruby linenos %}
 def processDir( dirPath )
     Dir.foreach( dirPath ) do | content |
         next if content == "." or content == ".."
@@ -64,7 +64,7 @@ More confusingly, it seemed to do the right thing if an album contained a single
 
 In desperation, I rewrote the code to collect files and directories at each level, process files first and then recurse into directories.
 
-{% highlight ruby lineanchors %}
+{% highlight ruby linenos %}
 def ProcessDir( dirPath )
     directories = []
     files = []
@@ -111,7 +111,7 @@ It also doesn't throw errors if there are no child processes to wait for.
 With this simple fix, the code now behaves as I expect it to.
 And I can finally move on to the next project.
 
-{% highlight diff lineanchors %}
+{% highlight diff linenos %}
 diff --git a/normalizeFLAC.rb b/normalizeFLAC.rb
 index 217e949..e3c586d 100755
 --- a/normalizeFLAC.rb

@@ -55,7 +55,7 @@ To do this, we'll export the tags to a text file.
 
 The contents of this exported file look something like this,
 
-{% highlight ini lineanchors %}
+{% highlight ini linenos %}
 TITLE=The Title
 ARTIST=The Artist
 ALBUM=The Album
@@ -75,7 +75,7 @@ And reapply the tags back to the fresh FLAC file.
 Let's put this into a nice bash function.
 This forms the inner-most function of our script and is called only when absolutely necessary.
 
-{% highlight bash lineanchors %}
+{% highlight bash linenos %}
 reencode()
 {
     echo "Removing ID3 tags."
@@ -110,7 +110,7 @@ The input to this function is a FLAC file.
 The function must try to do some clean up and apply a replay gain value.
 If it encounters an error, it will call the `reencode()` function to clean up the file.
 
-{% highlight bash lineanchors %}
+{% highlight bash linenos %}
 normalize()
 {
     # Check if the file is a FLAC file
@@ -141,7 +141,7 @@ normalize()
 Next, we need a recursive function that will dig into directories and call `normalize()` on every FLAC file it encounters.
 For added awesomeness, we can fork off multiple `normalize()` calls and wait for all of them to finish before moving to another directory level.
 
-{% highlight bash lineanchors %}
+{% highlight bash linenos %}
 processDir()
 {
     echo $(basename "${1}")/
@@ -173,7 +173,7 @@ Now, we just need wrapper functions around these three main functions and we hav
 At this point, we have to use `getopts` and encounter the familiar problem with bash scripts that don't use their own argument parser: we can either take one argument with spaces in it, or take multiple arguments without spaces in them.
 For this case, accepting a single argument is not a bad way to go, but this limitation does mean that this script is a prime candidate to be rewritten in ruby or python.
 
-{% highlight bash lineanchors %}
+{% highlight bash linenos %}
 
 readonly PROGNAME=$(basename $0)
 readonly ARGS="$@"

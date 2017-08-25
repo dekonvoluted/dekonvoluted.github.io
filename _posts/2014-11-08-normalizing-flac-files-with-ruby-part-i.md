@@ -38,7 +38,7 @@ That's it.
 
 Here's what this class looks like at the moment:
 
-{% highlight ruby lineanchors %}
+{% highlight ruby linenos %}
 # Normalize a single FLAC file
 class FlacFile
     def initialize filePath

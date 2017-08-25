@@ -33,7 +33,7 @@ This is little-endian for `0200` (=0x200, in hexadecimal), which is 512 in decim
 This image has 512 columns (which is true as this camera had a 512x512 sensor).
 Now, let's look at the different ways to go about extracting this value with C++.
 
-{% highlight cpp lineanchors %}
+{% highlight cpp linenos %}
 #include <fstream>
 #include <iostream>
 
@@ -65,7 +65,7 @@ However, you might want to read in larger blocks of data at once to minimize the
 For instance, let's say we would like to read in the entire 4100 byte header in at once and then extract the metadata present in it at our convenience.
 Working with the same principle, one might write the following code.
 
-{% highlight cpp lineanchors %}
+{% highlight cpp linenos %}
 #include <fstream>
 #include <iostream>
 
@@ -106,7 +106,7 @@ The compiler is warning that a location in memory is being pointed to by two typ
 Not the worst thing, but `-Wall` likes to play by the rules and that's something we should also try our best to do.
 The legal way in C to have the same location accessible to two different data types is by using `union`s.
 
-{% highlight cpp lineanchors %}
+{% highlight cpp linenos %}
 #include <fstream>
 #include <iostream>
 
@@ -140,7 +140,7 @@ The slicing of the char array is awkward, as is the use of unions to cast charac
 C++ provides some nice containers that ought to make the slicing part more natural.
 Let's start with using a string instead of an array of characters.
 
-{% highlight cpp lineanchors %}
+{% highlight cpp linenos %}
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -174,7 +174,7 @@ This opens the door to a potential segmentation fault or worse in case we end up
 In reality however, most implementations of the standard do indeed store the string in one contiguous block; still, we shouldn't really depend on that.
 So, let's use a container that does guarantee this operation is always safe, `vector`.
 
-{% highlight cpp lineanchors %}
+{% highlight cpp linenos %}
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -205,7 +205,7 @@ int main()
 This addresses our concern about a possible segmentation fault and retrieves binary data correctly from the file header.
 One last rewrite to make this code easier to read in the future.
 
-{% highlight cpp lineanchors %}
+{% highlight cpp linenos %}
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -248,7 +248,7 @@ One last change is the use of the appropriate datatype `std::size_t` to store th
 Now, there's one last thing we can do to make this code a little more robust and that's to ensure that the `cols` variable is always exactly 16 bits long.
 For that, we should use `std::uint16_t` instead of `unsigned short`.
 
-{% highlight cpp lineanchors %}
+{% highlight cpp linenos %}
 #include <fstream>
 #include <iostream>
 #include <vector>

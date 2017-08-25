@@ -21,7 +21,7 @@ To save time, we only need to test divisibility for primes whose squares are les
 To further save time, we'll count up in steps of two (skipping all even numbers entirely).
 Also, since we're skipping even numbers entirely, we needn't test divisibility by two, except for 3.
 
-{% highlight cpp lineanchors %}
+{% highlight cpp linenos %}
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -242,7 +242,7 @@ Let's run this without any compiler optimization.
 Okay, so it takes about 14 seconds to hit the millionth prime.
 Now, let's use all the tricks we learned so far to get python off to a speedy start.
 
-{% highlight python lineanchors %}
+{% highlight python linenos %}
 #!/usr/bin/env python
 
 import sys

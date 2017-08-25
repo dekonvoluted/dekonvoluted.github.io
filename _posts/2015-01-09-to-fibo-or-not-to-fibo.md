@@ -39,7 +39,7 @@ I was apprehensive of this not working because I figured that there could be sev
 I didn't realize that the Fibonacci series actually grows quite rapidly, crossing each order of magnitude in just four-five steps.
 You can check this for yourself:
 
-{% highlight cpp lineanchors %}
+{% highlight cpp linenos %}
 #include <iostream>
 #include <sstream>
 
@@ -84,7 +84,7 @@ This is to avoid integer overflow as integers only go up to two billion or so.
 Of course, all this was realized in hindsight.
 I coded this solution thinking it was a brute force solution and I would come up with a more elegant solution once I get it working.
 
-{% highlight cpp lineanchors %}
+{% highlight cpp linenos %}
 #include <iostream>
 #include <algorithm>
 #include <vector>

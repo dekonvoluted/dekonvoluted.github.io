@@ -66,7 +66,7 @@ $ echo $?
 Now that we have all the tools, let's put together the query function in bash, ruby and python.
 Here's the bash function first.
 
-{% highlight bash lineanchors %}
+{% highlight bash linenos %}
 list_available_drives()
 {
     # Gather all drives identifying themselves as rom devices in an array
@@ -98,7 +98,7 @@ But here, when working with device names, that's probably not much of a concern.
 
 Next, here's the ruby version.
 
-{% highlight ruby lineanchors %}
+{% highlight ruby linenos %}
 def list_available_drives
     drives = %x( lsblk | awk '/rom/ {print "/dev/"$1}' ).split( '\n' )
 
@@ -120,7 +120,7 @@ This function then returns an array of all available optical devices.
 
 Finally, here's an implementation in python.
 
-{% highlight python lineanchors %}
+{% highlight python linenos %}
 from subprocess import check_output, call
 
 def list_available_drives():

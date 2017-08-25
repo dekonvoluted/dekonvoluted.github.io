@@ -55,7 +55,7 @@ This makes operations like deleting older snapshots, restoring a snapshot, etc. 
 To put this into action, I now have a simple python script that reads in a configuration file specifying the source and destination and creates an incremental backup.
 A sample configuration file could look like this,
 
-{% highlight ini lineanchors %}
+{% highlight ini linenos %}
 [name]
 source = /path/to/source
 destination = /path/to/destination
@@ -84,7 +84,7 @@ At its core, the python script needs to execute an `rsync` call like this,
 Let's implement that first.
 A simple function called `archive_preset()` that takes three arguments, the preset name, the source path and the destination path.
 
-{% highlight python lineanchors %}
+{% highlight python linenos %}
 def archive_preset( preset, source, destination ):
     today = date.today().strftime( '%Y-%m-%d' )
     destination_path = destination + '/' + preset + '/'
@@ -112,7 +112,7 @@ def archive_preset( preset, source, destination ):
 This function can be called upon successfully parsing an input configuration file using `ConfigParser`.
 Multiple such presets may be passed to the program, so a function called process_preset_files() could accept one or more presets and issue calls to archive_preset() for each valid one.
 
-{% highlight python lineanchors %}
+{% highlight python linenos %}
 def process_preset_files( preset_files ):
     for preset_file in preset_files:
         if not path.isfile( preset_file ):
@@ -139,7 +139,7 @@ def process_preset_files( preset_files ):
 
 Now, all that remains is to write a front-facing bit to handle inputs and interact with the user.
 
-{% highlight python lineanchors %}
+{% highlight python linenos %}
 if __name__ == '__main__':
     parser = ArgumentParser( formatter_class=RawDescriptionHelpFormatter, description = '''
     Create and maintain incremental backups.

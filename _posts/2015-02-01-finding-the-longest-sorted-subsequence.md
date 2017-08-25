@@ -19,7 +19,7 @@ In the end, the longest of these possibilities is the answer.
 
 Here's the solution implemented in ruby.
 
-{% highlight ruby lineanchors %}
+{% highlight ruby linenos %}
 #!/usr/bin/env ruby
 
 # Return the longest sorted subsequence
