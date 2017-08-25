@@ -16,7 +16,7 @@
 .ge { color: #ddd; font-style: italic } /* Generic.Emph */
 .gh { color: #fff; font-weight: bold }  /* Generic.Heading */
 .gi { color: #6a2 }                     /* Generic.Inserted */
-.gl { color: #464; font-style: italic; padding-right:10px; user-select: none; } /* Generic.Linenos */
+.gl { color: #464; font-style: italic; padding-right: 10px; user-select: none; } /* Generic.Linenos */
 
 .go { color: #ddd }                     /* Generic.Output */
 .gp { color: #bbb; font-weight: bold }  /* Generic.Prompt */
