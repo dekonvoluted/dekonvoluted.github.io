@@ -26,6 +26,7 @@ body {
     padding: 10px 25px;
     border-radius: 10px;
     font-family: serif;
+    line-height: 2;
 }
 
 h1 {
@@ -46,6 +47,7 @@ h3 {
 
 pre {
     overflow: auto;
+    line-height: 1.5;
 }
 
 tr:nth-child( even ) {
