@@ -949,6 +949,9 @@ Each song is stored as an entry with the attribute `type` set to `song`.
 Each song contains the usual title, artist, album, genre, etc. tags as subelements of the entry.
 Listening statistics are basically boiled down to first-seen, last-seen/played and a rating between 0 and 5 in steps of 0.5.
 
+Album art, if found outside of the file, is also recorded in this XML file as an entry of type `ignore`.
+I feel like this is an example of reusing an existing XML schema for a purpose that it wasn't intended for.
+
 Rhythmbox has a separate playlist view, which comes with its own XML file storing queries, but this post has gone on for too long already, so I'll skip that.
 In any case, I'm not interested in going down the XML path as I think databases have significant advantages to offer over what XML is capable of.
 Perhaps it's worth noting that Amarok's scanner actually writes an XML file before it's imported by the application database proper.
