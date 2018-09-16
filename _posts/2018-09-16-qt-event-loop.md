@@ -179,11 +179,11 @@ The output on the shell looks something like this,
 
 {% highlight bash %}
 $ ./test
-Emit signal one.
-Execute slot one.
-Emit finished.
-Emit signal two.
-Execute slot two.
+Emit signal one
+Execute slot one
+Emit finished
+Emit signal two
+Execute slot two
 Bye!
 {% endhighlight %}
 
