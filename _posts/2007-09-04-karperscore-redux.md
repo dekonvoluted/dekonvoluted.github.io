@@ -116,7 +116,7 @@ I did a simulation of how the `score` of a song varies over one hundred plays, a
 That's why the `score`s always start at 25 for each of the three cases - no `rating` (blue), full `rating` (red) and minimum `rating` (green).
 I also assumed that the user listened to the song in its entirety everytime it's played (`percentage = 100`).
 
-[ Image lost ]
+![image](/images/attachment-0001.png)
 
 Clearly, for an unrated song, the `score` approaches 100 leisurely, making it to about 88 after the user listened to the song for the hundredth time.
 It's a good guess of how much the user might like the song after so many plays.
