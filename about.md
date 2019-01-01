@@ -11,7 +11,7 @@ I mean for this blog to be rather code-heavy, with all of it publicly available 
 
 # The name...
 
-I hoped the name would convey a sense of unravelling or simplifying explanation of something that originally was rather opaque and intimidating.
+I hoped the name would convey a sense of unraveling or simplifying explanation of something that originally was rather opaque and intimidating.
 The 'k' in the name is to associate this to the [KDE project](http://www.kde.org/), my contributions to which I hope will soon come to dominate most of the content of this blog.
 
 # The symbol (Ꮬ)...
