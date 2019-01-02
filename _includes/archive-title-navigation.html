@@ -1,0 +1,5 @@
+<div class="header">
+    {% for item in site.data.archive-navigation %}
+    <a href="{{ item.link }}" {% if page.url == item.link %} id="archive-navlink-active" {% else %} id="archive-navlink" {% endif %}>{{ item.name }}</a>
+    {% endfor %}
+</div>

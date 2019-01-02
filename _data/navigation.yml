@@ -1,0 +1,7 @@
+---
+- name: Projects
+  link: /projects.html
+- name: Archives
+  link: /years.html
+- name: About
+  link: /about.html

@@ -1,0 +1,19 @@
+<div class="header">
+    <a href="/" id="sitetitle">{{ site.symbol }} {{ site.title }}</a>
+    {% for item in site.data.navigation %}
+        {% if item.name == "Archives" %}
+            {% case page.title %}
+                {% when "Years", "Categories", "Tags" %}
+                    <a href="{{ item.link }}" id="navlink-active">{{ item.name }}</a>
+                {% else %}
+                    <a href="{{ item.link }}" id="navlink">{{ item.name }}</a>
+            {% endcase %}
+        {% else %}
+            {% if page.url == item.link %}
+                <a href="{{ item.link }}" id="navlink-active">{{ item.name }}</a>
+            {% else %}
+                <a href="{{ item.link }}" id="navlink">{{ item.name }}</a>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</div>
