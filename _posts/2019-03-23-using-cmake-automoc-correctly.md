@@ -165,6 +165,7 @@ I consider this to be a bug, but whatever.
 
 So, the nicest option to fix this problem is to *always* include either `moc_<filename>.cpp` or `<filename>.moc` at the end of the implementation cpp file.
 This way, the project setup is immune to relocations of the header file.
+Now, the relative location of the HPP/CPP files no longer matters as long as you tell CMake where to find the include files using `target_include_directories()`.
 
 I revisit this issue every time I start a Qt project, so here's a handy table summarizing how to never worry about moc again:
 
@@ -174,5 +175,4 @@ I revisit this issue every time I start a Qt project, so here's a handy table su
 | No Qt macros | Has Qt macros | + `#include "<name>.moc"` | + `set_target_properties(<target> PROPERTIES AUTOMOC ON)` |
 | Has Qt macros | No Qt macros | + `#include "moc_<name>.cpp"` | + `set_target_properties(<target> PROPERTIES AUTOMOC ON)` |
 | Has Qt macros | Has Qt macros | + `#include "moc_<name>.cpp"`<br>+ `#include "<name>.moc"` | + `set_target_properties(<target> PROPERTIES AUTOMOC ON)` |
-
 
