@@ -3,7 +3,6 @@ title: Using Eigen with CMake
 layout: post
 categories: [ user guides ]
 tags: [ C++, eigen, cmake ]
-comments: true
 ---
 
 Here's how you would write a CMake file to compile some C++ code using the [Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) linear algebra library.

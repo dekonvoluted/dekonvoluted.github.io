@@ -6,7 +6,6 @@ series: normalizing-flac-files
 repo: https://github.com/dekonvoluted/normalizeFLAC
 categories: [user guides]
 tags: [ruby, flac, recursion]
-comments: true
 ---
 
 I thought I was done with this project, but I had one niggling issue at the end of the last update.

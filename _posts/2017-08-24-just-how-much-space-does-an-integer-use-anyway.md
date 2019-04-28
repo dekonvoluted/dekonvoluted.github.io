@@ -3,7 +3,6 @@ title: Just how much space does an integer use, anyway?
 layout: post
 categories: [ classroom ]
 tags: [ C++ ]
-comments: true
 ---
 
 Four bytes.

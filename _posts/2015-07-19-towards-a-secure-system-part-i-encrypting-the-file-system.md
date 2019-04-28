@@ -5,7 +5,6 @@ series: security
 layout: post
 categories: [ user guides ]
 tags: [ dm-crypt, luks ]
-comments: true
 ---
 
 This is the first of a multi-part series focusing on setting up a secure Linux system.

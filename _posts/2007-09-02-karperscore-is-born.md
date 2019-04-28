@@ -4,7 +4,6 @@ layout: post
 series: karperscore
 categories: [ project KDE ]
 tags: [ amarok, ruby ]
-comments: true
 ---
 
 > This article refers to deprecated software and methods.

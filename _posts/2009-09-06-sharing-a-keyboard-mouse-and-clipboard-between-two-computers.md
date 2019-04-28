@@ -3,7 +3,6 @@ title: Sharing a keyboard, mouse and clipboard between two computers
 layout: post
 categories: [ user guides ]
 tags: [ synergy ]
-comments: true
 ---
 
 # Problem Background

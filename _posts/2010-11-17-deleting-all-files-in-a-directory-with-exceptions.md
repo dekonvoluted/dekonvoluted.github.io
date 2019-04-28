@@ -3,7 +3,6 @@ title: Deleting all files in a directory with exceptions
 layout: post
 categories: [ user guides ]
 tags: [ bash, globs ]
-comments: true
 ---
 
 It's easy to delete all files in a directory:

@@ -4,7 +4,6 @@ layout: post
 series: music-player
 categories: [ project KDE ]
 tags: [ music, amarok, mysql, clementine, sqlite, rhythmbox, xml ]
-comments: true
 ---
 
 Music managers deal with lots of data and metadata relating to one or more music libraries they manage.

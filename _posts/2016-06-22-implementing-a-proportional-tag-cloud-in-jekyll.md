@@ -3,7 +3,6 @@ title: Implementing a proportional tag cloud in Jekyll
 layout: post
 categories: [ user guides ]
 tags: [ jekyll, liquid, tags ]
-comments: true
 ---
 
 <script type="text/javascript" async

@@ -3,7 +3,6 @@ title: Manipulating the colors of a VobSub subtitle stream
 layout: post
 categories: [ user guides ]
 tags: [ vobsub, subtitles, mplayer ]
-comments: true
 ---
 
 I'd like to standardize the color palette of vobsub subtitles of all video files in my collection.

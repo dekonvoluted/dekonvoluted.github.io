@@ -3,7 +3,6 @@ title: Working with binary files in C++
 layout: post
 categories: [ user guides ]
 tags: [ C++, binary ]
-comments: true
 ---
 
 Binary files are more efficient at storing numerical data in smaller file sizes than plain text.

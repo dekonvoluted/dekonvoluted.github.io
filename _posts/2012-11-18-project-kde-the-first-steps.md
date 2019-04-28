@@ -4,7 +4,6 @@ subtitle: The first steps
 layout: post
 categories: [ project KDE ]
 tags: [ Qt, C++, cmake, git ]
-comments: true
 ---
 
 Project KDE is what I call my personal project to start contributing code to the KDE project.

@@ -3,7 +3,6 @@ title: Building C++/Qt projects with CMake
 layout: post
 categories: [ user guides ]
 tags: [ C++, Qt, cmake ]
-comments: true
 ---
 
 Make files are convenient ways of recording and replaying a sequence of commands needed to build a program from source.

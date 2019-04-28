@@ -3,7 +3,6 @@ title: Automatically disable touchpad while typing
 layout: post
 categories: [ user guides ]
 tags: [ synaptics ]
-comments: true
 ---
 
 Here's something useful for when you have to use a laptop with an ultra-sensitive touchpad.

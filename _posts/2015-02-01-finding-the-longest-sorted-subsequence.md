@@ -3,7 +3,6 @@ title: Finding the longest sorted subsequence
 layout: post
 categories: [ puzzles ]
 tags: [ ruby ]
-comments: true
 ---
 
 Another problem to solve, the problem statement goes like this,

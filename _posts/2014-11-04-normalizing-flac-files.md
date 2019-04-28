@@ -5,7 +5,6 @@ repo: https://github.com/dekonvoluted/normalizeFLAC
 series: normalizing-flac-files
 categories: [user guides]
 tags: [bash, flac, metaflac, replay gain]
-comments: true
 ---
 
 I converted my music collection to FLAC sometime in 2011.

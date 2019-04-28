@@ -3,7 +3,6 @@ title: Ignoring build directories with git
 layout: post
 categories: [ user guides ]
 tags: [ git, cmake ]
-comments: true
 ---
 
 I happen to use `cmake` for my projects and typically do an out-of-source build in a directory I lazily call `build/`.

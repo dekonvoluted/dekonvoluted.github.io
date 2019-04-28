@@ -4,7 +4,6 @@ layout: post
 series: music-player
 categories: [ project KDE ]
 tags: [ music, amarok, kde ]
-comments: true
 ---
 
 # A brief history of Amarok

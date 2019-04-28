@@ -3,7 +3,6 @@ title: Using CMake's AUTOMOC correctly
 layout: post
 categories: [ programming ]
 tags: [ CMake, Qt, moc, C++ ]
-comments: true
 ---
 
 Consider the following project:

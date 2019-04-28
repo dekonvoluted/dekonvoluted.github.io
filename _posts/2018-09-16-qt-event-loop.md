@@ -3,7 +3,6 @@ title: Understanding Qt's Event Loop and Signals/Slots
 layout: post
 categories: [ programming ]
 tags: [ C++, Qt ]
-comments: true
 ---
 
 I had a bit of trouble wrapping my head around the idea of Qt's event loop and how it relates to the signals and slots mechanism.

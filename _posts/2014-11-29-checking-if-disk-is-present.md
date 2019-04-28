@@ -3,7 +3,6 @@ title: Checking if a disk is present
 layout: post
 categories: [user guides]
 tags: [cd, dvd, bluray, lsblk, blkid, bash, ruby, python]
-comments: true
 ---
 
 Here's an interesting problem.

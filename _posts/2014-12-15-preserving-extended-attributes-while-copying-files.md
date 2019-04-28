@@ -3,7 +3,6 @@ title: Preserving extended attributes while copying files
 layout: post
 categories: [ user guides ]
 tags: [ rsync, cp, ext4 ]
-comments: true
 ---
 
 > This is the second draft of this write up and goes into more detail about preserving and restoring extended attributes when copying files.

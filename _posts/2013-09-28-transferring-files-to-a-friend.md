@@ -3,7 +3,6 @@ title: Transferring files to a friend
 layout: post
 categories: [ user guides ]
 tags: [ torrent ]
-comments: true
 ---
 
 I've often encountered the need to transfer one or more files (of various sizes) to someone who's otherwise reachable by instant messaging.

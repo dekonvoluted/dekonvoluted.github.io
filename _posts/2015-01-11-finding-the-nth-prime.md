@@ -3,7 +3,6 @@ title: Finding the nth prime
 layout: post
 categories: [ puzzles ]
 tags: [ C++, python ]
-comments: true
 ---
 
 Here's a puzzle that I played with a few years ago when I was learning python.
